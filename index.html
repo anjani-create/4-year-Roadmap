@@ -1,143 +1,152 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>B.Tech CST 4-Year Quest Roadmap</title>
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <title>CST CyberQuest - 4-Year B.Tech Roadmap</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    body {
+    :root {
+      color-scheme: dark;
+    }
+    html, body {
+      background-color: #05070e !important;
+      color: #e2e8f0 !important;
       font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: #0B0F19;
-      color: #F3F4F6;
     }
-    .font-mono { font-family: 'Fira Code', monospace; }
-    .bg-mesh {
-      background: radial-gradient(circle at 10% 20%, rgba(124, 58, 237, 0.15) 0%, transparent 40%),
-                  radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.15) 0%, transparent 40%),
-                  radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.08) 0%, transparent 50%);
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+    
+    .bg-cyber-mesh {
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(124, 58, 237, 0.18) 0%, transparent 45%),
+        radial-gradient(circle at 85% 85%, rgba(6, 182, 212, 0.15) 0%, transparent 45%),
+        radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.8) 0%, #05070e 100%);
+      background-attachment: fixed;
     }
+    
+    .glass-panel {
+      background: rgba(13, 18, 30, 0.75) !important;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+    }
+    
     .glass-card {
-      background: rgba(17, 24, 39, 0.7);
+      background: rgba(18, 24, 40, 0.6) !important;
       backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
+    
     .glass-card:hover {
       border-color: rgba(168, 85, 247, 0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px -10px rgba(124, 58, 237, 0.2);
     }
-    .text-glow { text-shadow: 0 0 12px rgba(168, 85, 247, 0.5); }
-    .text-glow-cyan { text-shadow: 0 0 12px rgba(6, 182, 212, 0.5); }
     
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: #0B0F19; }
-    ::-webkit-scrollbar-thumb { background: #1F2937; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #374151; }
+    .glow-purple { box-shadow: 0 0 20px -5px rgba(168, 85, 247, 0.4); }
+    .text-glow { text-shadow: 0 0 12px rgba(168, 85, 247, 0.6); }
 
-    /* Checkbox Styling */
-    .custom-checkbox {
+    /* Custom Checkbox */
+    .custom-chk {
       appearance: none;
-      width: 22px;
-      height: 22px;
-      border: 2px solid #374151;
+      width: 20px;
+      height: 20px;
+      border: 2px solid #334155;
       border-radius: 6px;
-      outline: none;
-      transition: all 0.2s ease;
+      background: rgba(15, 23, 42, 0.8);
       cursor: pointer;
       position: relative;
+      transition: all 0.2s ease;
     }
-    .custom-checkbox:checked {
-      background-color: #A855F7;
-      border-color: #A855F7;
-      box-shadow: 0 0 10px rgba(168, 85, 247, 0.6);
+    .custom-chk:checked {
+      background-color: #a855f7;
+      border-color: #c084fc;
+      box-shadow: 0 0 12px rgba(168, 85, 247, 0.8);
     }
-    .custom-checkbox:checked::after {
+    .custom-chk:checked::after {
       content: '✓';
       position: absolute;
       color: white;
-      font-size: 14px;
-      font-weight: bold;
-      top: -1px;
-      left: 4px;
+      font-size: 13px;
+      font-weight: 800;
+      top: -2px;
+      left: 3px;
     }
 
-    /* Pulse Glow Animations */
-    @keyframes pulseGlow {
-      0%, 100% { box-shadow: 0 0 15px rgba(168, 85, 247, 0.2); }
-      50% { box-shadow: 0 0 25px rgba(168, 85, 247, 0.5); }
-    }
-    .glow-active { animation: pulseGlow 3s infinite ease-in-out; }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #05070e; }
+    ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #334155; }
   </style>
 </head>
-<body class="bg-mesh min-h-screen text-slate-200 antialiased pb-16">
+<body class="bg-cyber-mesh min-h-screen text-slate-200 antialiased selection:bg-purple-500 selection:text-white pb-20">
 
-  <!-- TOP HEADER & STATS BAR -->
-  <header class="sticky top-0 z-40 bg-slate-950/80 backdrop-blur-md border-b border-slate-800/80">
+  <!-- TOP HUD NAVIGATION -->
+  <header class="sticky top-0 z-50 bg-[#05070e]/85 backdrop-blur-xl border-b border-slate-800/80">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
       <div class="flex flex-wrap items-center justify-between gap-4">
         
-        <!-- Logo -->
+        <!-- Branding -->
         <div class="flex items-center space-x-3">
-          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-600 via-indigo-500 to-cyan-400 p-0.5 shadow-lg shadow-purple-500/20">
-            <div class="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center">
-              <i class="fa-solid fa-code text-purple-400 text-lg"></i>
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-600 via-indigo-500 to-cyan-400 p-0.5 glow-purple">
+            <div class="w-full h-full bg-[#080d1a] rounded-[10px] flex items-center justify-center">
+              <i class="fa-solid fa-[#080d1a] fa-terminal text-purple-400 text-sm"></i>
             </div>
           </div>
           <div>
-            <h1 class="text-lg font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">
-              B.Tech CST Quest
-            </h1>
-            <p class="text-xs text-slate-400 font-mono">Computer Science & Tech Roadmap</p>
+            <div class="flex items-center gap-2">
+              <h1 class="text-base font-extrabold tracking-tight text-white">CST CYBERQUEST</h1>
+              <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300 border border-purple-500/30">v2.4</span>
+            </div>
+            <p class="text-[11px] text-slate-400 font-mono">B.Tech CST Gamified Career Engine</p>
           </div>
         </div>
 
-        <!-- Gamification Header Stats -->
+        <!-- HUD Player Bar -->
         <div class="flex items-center gap-3 sm:gap-6">
           
-          <!-- Level & Rank -->
-          <div class="flex items-center gap-2 bg-slate-900/90 border border-slate-800 px-3 py-1.5 rounded-xl">
-            <div class="w-8 h-8 rounded-lg bg-purple-500/10 border border-purple-500/30 flex items-center justify-center">
-              <i class="fa-solid fa-crown text-purple-400 text-sm"></i>
+          <!-- Rank & Level -->
+          <div class="flex items-center gap-2.5 bg-[#0b1120] border border-slate-800/90 px-3.5 py-1.5 rounded-xl">
+            <div class="w-7 h-7 rounded-lg bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 text-xs">
+              <i class="fa-solid fa-user-astronaut"></i>
             </div>
             <div>
-              <div class="text-[10px] uppercase text-slate-400 font-semibold tracking-wider">Level & Rank</div>
-              <div class="text-xs font-bold text-slate-200 flex items-center gap-1">
-                Lvl <span id="levelNum" class="text-purple-400">1</span>: <span id="rankTitle" class="text-cyan-400">Freshman Recruit</span>
-              </div>
+              <div class="text-[9px] uppercase tracking-wider text-slate-400 font-bold font-mono">Rank</div>
+              <div class="text-xs font-bold text-slate-100"><span id="rankTitle" class="text-purple-400">Freshman Recruit</span></div>
             </div>
           </div>
 
-          <!-- XP Progress -->
-          <div class="hidden sm:flex flex-col min-w-[140px]">
-            <div class="flex justify-between text-[11px] font-mono mb-1">
-              <span class="text-purple-400"><i class="fa-solid fa-bolt mr-1"></i><span id="currentXp">0</span> XP</span>
-              <span class="text-slate-400"><span id="nextLevelXp">200</span> XP</span>
+          <!-- Streak -->
+          <div class="flex items-center gap-2 bg-[#0b1120] border border-slate-800/90 px-3.5 py-1.5 rounded-xl">
+            <i class="fa-solid fa-fire text-amber-500 text-base animate-pulse"></i>
+            <div>
+              <div class="text-[9px] uppercase tracking-wider text-slate-400 font-bold font-mono">Streak</div>
+              <div class="text-xs font-bold text-amber-400 font-mono"><span id="streakDays">1</span> Day</div>
             </div>
-            <div class="w-full h-2 bg-slate-800 rounded-full overflow-hidden p-0.5 border border-slate-700/50">
+          </div>
+
+          <!-- Level & XP Bar -->
+          <div class="hidden sm:flex flex-col min-w-[150px]">
+            <div class="flex justify-between text-[10px] font-mono mb-1">
+              <span class="text-purple-300 font-bold">LVL <span id="levelNum">1</span></span>
+              <span class="text-slate-400"><span id="currentXp">0</span> / <span id="nextLvlXp">400</span> XP</span>
+            </div>
+            <div class="w-full h-2 bg-slate-900 rounded-full overflow-hidden p-0.5 border border-slate-800">
               <div id="xpBar" class="h-full bg-gradient-to-r from-purple-500 to-cyan-400 rounded-full transition-all duration-500" style="width: 0%"></div>
             </div>
           </div>
 
-          <!-- Streak Counter -->
-          <div class="flex items-center gap-2 bg-slate-900/90 border border-slate-800 px-3 py-1.5 rounded-xl">
-            <i class="fa-solid fa-fire text-amber-500 text-lg animate-pulse"></i>
-            <div>
-              <div class="text-[10px] uppercase text-slate-400 font-semibold tracking-wider">Streak</div>
-              <div class="text-xs font-bold font-mono text-amber-400"><span id="streakCount">1</span> Days</div>
-            </div>
-          </div>
-
-          <!-- Sound Toggle & Reset -->
-          <div class="flex items-center gap-2">
-            <button id="soundToggle" onclick="toggleSound()" title="Toggle Sound FX" class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-purple-400 hover:border-purple-500/50 flex items-center justify-center transition-all">
-              <i class="fa-solid fa-volume-high text-sm"></i>
+          <!-- Controls -->
+          <div class="flex items-center gap-1.5">
+            <button id="soundBtn" onclick="toggleSound()" class="w-9 h-9 rounded-xl bg-[#0b1120] border border-slate-800 text-slate-400 hover:text-purple-400 flex items-center justify-center transition-all">
+              <i class="fa-solid fa-volume-high text-xs"></i>
             </button>
-            <button onclick="resetProgress()" title="Reset Progress" class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-red-400 hover:border-red-500/50 flex items-center justify-center transition-all">
-              <i class="fa-solid fa-rotate-right text-sm"></i>
+            <button onclick="resetData()" class="w-9 h-9 rounded-xl bg-[#0b1120] border border-slate-800 text-slate-400 hover:text-red-400 flex items-center justify-center transition-all" title="Reset Quest Progress">
+              <i class="fa-solid fa-rotate-right text-xs"></i>
             </button>
           </div>
 
@@ -147,690 +156,491 @@
   </header>
 
   <!-- MAIN CONTAINER -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
 
-    <!-- HERO DASHBOARD BANNER -->
-    <div class="glass-card rounded-3xl p-6 sm:p-8 mb-8 relative overflow-hidden glow-active">
-      <div class="absolute -right-12 -bottom-12 w-64 h-64 bg-purple-600/10 rounded-full blur-3xl pointer-events-none"></div>
-      <div class="absolute -left-12 -top-12 w-64 h-64 bg-cyan-600/10 rounded-full blur-3xl pointer-events-none"></div>
-
-      <div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-        <div class="max-w-2xl">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-medium mb-3">
-            <i class="fa-solid fa-graduation-cap"></i> Complete B.Tech CST Strategy Plan
-          </div>
-          <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight mb-2">
-            Level Up Your <span class="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">Engineering Career</span>
-          </h2>
-          <p class="text-slate-400 text-sm sm:text-base">
-            From First Year Fundamentals to High-Paying Tech Placements. Complete quests, earn badges, build industry projects, and conquer your interviews!
-          </p>
-        </div>
-
-        <!-- Overall Progression Progress Wheel / Box -->
-        <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 flex items-center gap-5 min-w-[280px]">
-          <div class="relative w-20 h-20 flex items-center justify-center">
-            <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
-              <path class="text-slate-800" stroke-width="3.5" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-              <path id="overallCircle" class="text-purple-500 transition-all duration-700 ease-out" stroke-dasharray="0, 100" stroke-width="3.5" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-            </svg>
-            <span id="overallPercentText" class="absolute text-base font-bold font-mono text-white">0%</span>
-          </div>
-          <div>
-            <div class="text-xs text-slate-400 uppercase font-semibold">Total Degree Quest</div>
-            <div class="text-lg font-bold text-white"><span id="completedTasksCount">0</span> / <span id="totalTasksCount">0</span> Tasks</div>
-            <div class="text-[11px] text-purple-400 font-mono mt-0.5">Stay consistent daily!</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- MAIN NAVIGATION TABS -->
-    <div class="flex items-center gap-2 overflow-x-auto pb-4 mb-6 border-b border-slate-800/80 no-scrollbar">
-      <button onclick="switchTab('year1')" id="tab-year1" class="tab-btn px-5 py-2.5 rounded-xl font-medium text-sm whitespace-nowrap transition-all flex items-center gap-2 bg-purple-600 text-white shadow-lg shadow-purple-600/30">
-        <i class="fa-solid fa-seedling"></i> Year 1: Fundamentals
+    <!-- NAVIGATION TABS HUB -->
+    <div class="flex items-center gap-2 overflow-x-auto pb-3 mb-6 no-scrollbar border-b border-slate-800/60">
+      <button onclick="switchTab('overview')" id="tab-overview" class="tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-purple-600 text-white shadow-lg shadow-purple-600/30 flex items-center gap-2">
+        <i class="fa-solid fa-grip"></i> Command Center
       </button>
-      <button onclick="switchTab('year2')" id="tab-year2" class="tab-btn px-5 py-2.5 rounded-xl font-medium text-sm whitespace-nowrap transition-all flex items-center gap-2 bg-slate-900 text-slate-400 border border-slate-800 hover:text-white hover:bg-slate-800">
-        <i class="fa-solid fa-laptop-code"></i> Year 2: Programming & DSA
+      <button onclick="switchTab('y1')" id="tab-y1" class="tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-[#0b1120] text-slate-400 border border-slate-800 hover:text-white flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Y1 Year 1: Fundamentals
       </button>
-      <button onclick="switchTab('year3')" id="tab-year3" class="tab-btn px-5 py-2.5 rounded-xl font-medium text-sm whitespace-nowrap transition-all flex items-center gap-2 bg-slate-900 text-slate-400 border border-slate-800 hover:text-white hover:bg-slate-800">
-        <i class="fa-solid fa-rocket"></i> Year 3: Projects & Internships
+      <button onclick="switchTab('y2')" id="tab-y2" class="tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-[#0b1120] text-slate-400 border border-slate-800 hover:text-white flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-cyan-400"></span> Y2 Year 2: Programming Mastery
       </button>
-      <button onclick="switchTab('year4')" id="tab-year4" class="tab-btn px-5 py-2.5 rounded-xl font-medium text-sm whitespace-nowrap transition-all flex items-center gap-2 bg-slate-900 text-slate-400 border border-slate-800 hover:text-white hover:bg-slate-800">
-        <i class="fa-solid fa-briefcase"></i> Year 4: Placements & Job Ready
+      <button onclick="switchTab('y3')" id="tab-y3" class="tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-[#0b1120] text-slate-400 border border-slate-800 hover:text-white flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-purple-400"></span> Y3 Year 3: Projects & Internships
       </button>
-      <button onclick="switchTab('projects')" id="tab-projects" class="tab-btn px-5 py-2.5 rounded-xl font-medium text-sm whitespace-nowrap transition-all flex items-center gap-2 bg-slate-900 text-slate-400 border border-slate-800 hover:text-white hover:bg-slate-800">
-        <i class="fa-solid fa-folder-open"></i> Mini & Major Projects
+      <button onclick="switchTab('y4')" id="tab-y4" class="tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-[#0b1120] text-slate-400 border border-slate-800 hover:text-white flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-rose-400"></span> Y4 Year 4: Job Readiness
       </button>
-      <button onclick="switchTab('badges')" id="tab-badges" class="tab-btn px-5 py-2.5 rounded-xl font-medium text-sm whitespace-nowrap transition-all flex items-center gap-2 bg-slate-900 text-slate-400 border border-slate-800 hover:text-white hover:bg-slate-800">
-        <i class="fa-solid fa-award"></i> Badges (<span id="unlockedBadgesBadge">0</span>/5)
-      </button>
-      <button onclick="switchTab('resources')" id="tab-resources" class="tab-btn px-5 py-2.5 rounded-xl font-medium text-sm whitespace-nowrap transition-all flex items-center gap-2 bg-slate-900 text-slate-400 border border-slate-800 hover:text-white hover:bg-slate-800">
-        <i class="fa-solid fa-book-bookmark"></i> Resources Hub
+      <button onclick="switchTab('projects')" id="tab-projects" class="tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-[#0b1120] text-slate-400 border border-slate-800 hover:text-white flex items-center gap-2">
+        <i class="fa-solid fa-code-fork text-amber-400"></i> Project Blueprints
       </button>
     </div>
 
-    <!-- TAB CONTENTS -->
-    <div id="tabContent">
+    <!-- COMMAND CENTER OVERVIEW PANEL -->
+    <div id="content-overview" class="tab-panel space-y-6">
       
-      <!-- YEAR 1 TAB -->
-      <div id="content-year1" class="tab-panel space-y-6">
-        <div class="glass-card rounded-2xl p-6 border-l-4 border-l-purple-500">
-          <div class="flex items-center justify-between">
+      <!-- Hero Banner -->
+      <div class="glass-panel rounded-3xl p-6 sm:p-8 relative overflow-hidden border-purple-500/20">
+        <div class="absolute -right-20 -top-20 w-80 h-80 bg-purple-600/15 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -left-20 -bottom-20 w-80 h-80 bg-cyan-600/15 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-8 space-y-4">
+            <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-mono">
+              <i class="fa-solid fa-graduation-cap"></i> B.TECH COMPUTER SCIENCE & TECHNOLOGY (CST) ROADMAP
+            </span>
+            <h2 class="text-3xl sm:text-5xl font-black text-white tracking-tight leading-none">
+              Level Up Your College Journey From <span class="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">Novice To Tech Titan</span>
+            </h2>
+            <p class="text-slate-400 text-sm sm:text-base leading-relaxed max-w-2xl">
+              Embark on a 4-year gamified journey tailored for B.Tech CST. Complete semester missions, gain XP, unlock badges, build industry projects, and secure top software engineering offers.
+            </p>
+            <div class="pt-2 flex flex-wrap gap-3">
+              <button onclick="switchTab('y1')" class="px-6 py-3 bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs rounded-xl shadow-lg shadow-purple-600/30 transition-all flex items-center gap-2">
+                START YEAR 1 MISSIONS <i class="fa-solid fa-arrow-right"></i>
+              </button>
+              <button onclick="openGoalModal()" class="px-5 py-3 bg-slate-900/80 hover:bg-slate-800 text-slate-300 border border-slate-700/80 font-bold text-xs rounded-xl transition-all flex items-center gap-2">
+                <i class="fa-solid fa-plus text-purple-400"></i> ADD CUSTOM QUEST
+              </button>
+            </div>
+          </div>
+
+          <!-- Hero Level Card -->
+          <div class="lg:col-span-4 bg-[#080d1a]/90 border border-slate-800 rounded-2xl p-6 flex flex-col items-center text-center space-y-3">
+            <div class="w-16 h-16 rounded-2xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 text-2xl glow-purple">
+              <i class="fa-solid fa-user-astronaut"></i>
+            </div>
             <div>
-              <h3 class="text-xl font-bold text-white">Year 1: Building Unshakable Fundamentals</h3>
-              <p class="text-slate-400 text-sm mt-1">Focus: C Language, Linux/Git, Mathematics & Computer Logic</p>
+              <h3 id="heroRank" class="text-xl font-bold text-white">Freshman Recruit</h3>
+              <p class="text-xs text-slate-400 font-mono">Level 1 Engineer</p>
             </div>
-            <span class="text-xs font-mono px-3 py-1 bg-purple-500/10 border border-purple-500/30 text-purple-300 rounded-full">Sem 1 & Sem 2</span>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <!-- Semester 1 -->
-          <div class="glass-card rounded-2xl p-6 space-y-4">
-            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-              <h4 class="font-bold text-lg text-purple-400 flex items-center gap-2">
-                <i class="fa-solid fa-1"></i> Semester 1: C Programming & Tools
-              </h4>
-              <span class="text-xs font-mono text-slate-400" id="sem1ProgressText">0% Done</span>
+            <div class="w-full pt-2">
+              <div class="flex justify-between text-[11px] font-mono text-slate-400 mb-1">
+                <span>XP Progress</span>
+                <span class="text-purple-400 font-bold"><span id="heroXp">0</span> / <span id="heroNextXp">400</span> XP</span>
+              </div>
+              <div class="w-full h-2.5 bg-slate-900 rounded-full overflow-hidden p-0.5 border border-slate-800">
+                <div id="heroXpBar" class="h-full bg-gradient-to-r from-purple-500 to-cyan-400 rounded-full transition-all duration-500" style="width: 0%"></div>
+              </div>
             </div>
-            <ul class="space-y-3" id="sem1List"></ul>
-          </div>
-
-          <!-- Semester 2 -->
-          <div class="glass-card rounded-2xl p-6 space-y-4">
-            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-              <h4 class="font-bold text-lg text-cyan-400 flex items-center gap-2">
-                <i class="fa-solid fa-2"></i> Semester 2: OOPs & Discrete Math
-              </h4>
-              <span class="text-xs font-mono text-slate-400" id="sem2ProgressText">0% Done</span>
-            </div>
-            <ul class="space-y-3" id="sem2List"></ul>
           </div>
         </div>
       </div>
 
-      <!-- YEAR 2 TAB -->
-      <div id="content-year2" class="tab-panel space-y-6 hidden">
-        <div class="glass-card rounded-2xl p-6 border-l-4 border-l-cyan-500">
-          <div class="flex items-center justify-between">
-            <div>
-              <h3 class="text-xl font-bold text-white">Year 2: Programming Excellence & DSA Mastery</h3>
-              <p class="text-slate-400 text-sm mt-1">Focus: Advanced Data Structures, Algorithms, OS, DBMS & Computer Networks</p>
-            </div>
-            <span class="text-xs font-mono px-3 py-1 bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 rounded-full">Sem 3 & Sem 4</span>
+      <!-- Quick Stats Grid -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="glass-card rounded-2xl p-4 flex items-center gap-4">
+          <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 text-lg">
+            <i class="fa-solid fa-list-check"></i>
           </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <!-- Semester 3 -->
-          <div class="glass-card rounded-2xl p-6 space-y-4">
-            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-              <h4 class="font-bold text-lg text-purple-400 flex items-center gap-2">
-                <i class="fa-solid fa-3"></i> Semester 3: DSA (Part 1) & DBMS
-              </h4>
-              <span class="text-xs font-mono text-slate-400" id="sem3ProgressText">0% Done</span>
-            </div>
-            <ul class="space-y-3" id="sem3List"></ul>
-          </div>
-
-          <!-- Semester 4 -->
-          <div class="glass-card rounded-2xl p-6 space-y-4">
-            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-              <h4 class="font-bold text-lg text-cyan-400 flex items-center gap-2">
-                <i class="fa-solid fa-4"></i> Semester 4: Advanced DSA, OS & Networks
-              </h4>
-              <span class="text-xs font-mono text-slate-400" id="sem4ProgressText">0% Done</span>
-            </div>
-            <ul class="space-y-3" id="sem4List"></ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- YEAR 3 TAB -->
-      <div id="content-year3" class="tab-panel space-y-6 hidden">
-        <div class="glass-card rounded-2xl p-6 border-l-4 border-l-emerald-500">
-          <div class="flex items-center justify-between">
-            <div>
-              <h3 class="text-xl font-bold text-white">Year 3: Specialization, Projects & Internships</h3>
-              <p class="text-slate-400 text-sm mt-1">Focus: Full-Stack Web / ML Specialization, Hackathons & Paid Summer Internships</p>
-            </div>
-            <span class="text-xs font-mono px-3 py-1 bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 rounded-full">Sem 5 & Sem 6</span>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <!-- Semester 5 -->
-          <div class="glass-card rounded-2xl p-6 space-y-4">
-            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-              <h4 class="font-bold text-lg text-purple-400 flex items-center gap-2">
-                <i class="fa-solid fa-5"></i> Semester 5: Specialization & Hackathons
-              </h4>
-              <span class="text-xs font-mono text-slate-400" id="sem5ProgressText">0% Done</span>
-            </div>
-            <ul class="space-y-3" id="sem5List"></ul>
-          </div>
-
-          <!-- Semester 6 -->
-          <div class="glass-card rounded-2xl p-6 space-y-4">
-            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-              <h4 class="font-bold text-lg text-emerald-400 flex items-center gap-2">
-                <i class="fa-solid fa-6"></i> Semester 6: Internship Sprint & LLD
-              </h4>
-              <span class="text-xs font-mono text-slate-400" id="sem6ProgressText">0% Done</span>
-            </div>
-            <ul class="space-y-3" id="sem6List"></ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- YEAR 4 TAB -->
-      <div id="content-year4" class="tab-panel space-y-6 hidden">
-        <div class="glass-card rounded-2xl p-6 border-l-4 border-l-amber-500">
-          <div class="flex items-center justify-between">
-            <div>
-              <h3 class="text-xl font-bold text-white">Year 4: Job Readiness, Placement & High Offers</h3>
-              <p class="text-slate-400 text-sm mt-1">Focus: Top Interview Questions, System Design (HLD/LLD), Mock Interviews & Corporate Onboarding</p>
-            </div>
-            <span class="text-xs font-mono px-3 py-1 bg-amber-500/10 border border-amber-500/30 text-amber-300 rounded-full">Sem 7 & Sem 8</span>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <!-- Semester 7 -->
-          <div class="glass-card rounded-2xl p-6 space-y-4">
-            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-              <h4 class="font-bold text-lg text-amber-400 flex items-center gap-2">
-                <i class="fa-solid fa-7"></i> Semester 7: Placement Sprints & HLD
-              </h4>
-              <span class="text-xs font-mono text-slate-400" id="sem7ProgressText">0% Done</span>
-            </div>
-            <ul class="space-y-3" id="sem7List"></ul>
-          </div>
-
-          <!-- Semester 8 -->
-          <div class="glass-card rounded-2xl p-6 space-y-4">
-            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-              <h4 class="font-bold text-lg text-green-400 flex items-center gap-2">
-                <i class="fa-solid fa-8"></i> Semester 8: Major Capstone & Job Offers
-              </h4>
-              <span class="text-xs font-mono text-slate-400" id="sem8ProgressText">0% Done</span>
-            </div>
-            <ul class="space-y-3" id="sem8List"></ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- PROJECTS SHOWCASE TAB -->
-      <div id="content-projects" class="tab-panel space-y-6 hidden">
-        <div class="glass-card rounded-2xl p-6 border-l-4 border-l-purple-500">
-          <h3 class="text-xl font-bold text-white">Recommended Portfolio Projects</h3>
-          <p class="text-slate-400 text-sm mt-1">Build these step-by-step to create an outstanding GitHub resume profile for interviews.</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="projectsContainer"></div>
-      </div>
-
-      <!-- BADGES TAB -->
-      <div id="content-badges" class="tab-panel space-y-6 hidden">
-        <div class="glass-card rounded-2xl p-6 border-l-4 border-l-amber-500">
-          <h3 class="text-xl font-bold text-white">Engineering Achievement Badges</h3>
-          <p class="text-slate-400 text-sm mt-1">Unlock badges by reaching specific milestones in your 4-year CST roadmap.</p>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="badgesContainer"></div>
-      </div>
-
-      <!-- RESOURCES TAB -->
-      <div id="content-resources" class="tab-panel space-y-6 hidden">
-        <div class="glass-card rounded-2xl p-6 border-l-4 border-l-cyan-500 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h3 class="text-xl font-bold text-white">Curated Resources & Learning Hub</h3>
-            <p class="text-slate-400 text-sm mt-1">Handpicked YouTube playlists, official documentation, practice platforms, and books.</p>
+            <div class="text-[10px] uppercase font-mono text-slate-400">Completed Tasks</div>
+            <div class="text-xl font-bold text-white"><span id="statDone">0</span> / <span id="statTotal">27</span></div>
           </div>
-          <input type="text" id="resourceSearch" oninput="renderResources()" placeholder="Search resources..." class="bg-slate-900 border border-slate-800 rounded-xl px-4 py-2 text-sm text-slate-200 outline-none focus:border-purple-500 min-w-[220px]">
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="resourcesContainer"></div>
+        <div class="glass-card rounded-2xl p-4 flex items-center gap-4">
+          <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 text-lg">
+            <i class="fa-solid fa-bolt"></i>
+          </div>
+          <div>
+            <div class="text-[10px] uppercase font-mono text-slate-400">Total Experience</div>
+            <div class="text-xl font-bold text-white"><span id="statXp">0</span> XP</div>
+          </div>
+        </div>
+
+        <div class="glass-card rounded-2xl p-4 flex items-center gap-4">
+          <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-lg">
+            <i class="fa-solid fa-trophy"></i>
+          </div>
+          <div>
+            <div class="text-[10px] uppercase font-mono text-slate-400">Badges Unlocked</div>
+            <div class="text-xl font-bold text-white"><span id="statBadges">0</span> / 6</div>
+          </div>
+        </div>
+
+        <div class="glass-card rounded-2xl p-4 flex items-center gap-4">
+          <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-lg">
+            <i class="fa-solid fa-percent"></i>
+          </div>
+          <div>
+            <div class="text-[10px] uppercase font-mono text-slate-400">Degree Completion</div>
+            <div class="text-xl font-bold text-emerald-400 font-mono"><span id="statPercent">0</span>%</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Badges Showcase Section -->
+      <div class="glass-panel rounded-2xl p-6">
+        <h3 class="text-base font-bold text-white mb-4 flex items-center gap-2">
+          <i class="fa-solid fa-award text-amber-400"></i> Career Achievement Badges
+        </h3>
+        <p class="text-xs text-slate-400 mb-4">Unlock these milestones as you complete specific years and targets.</p>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3" id="badgesContainer"></div>
       </div>
 
     </div>
 
-    <!-- CUSTOM GOAL CREATOR FORM -->
-    <div class="glass-card rounded-2xl p-6 mt-8">
-      <h3 class="text-lg font-bold text-white mb-2 flex items-center gap-2">
-        <i class="fa-solid fa-plus-circle text-purple-400"></i> Add Your Personal Custom Goal
-      </h3>
-      <form id="addGoalForm" onsubmit="addCustomGoal(event)" class="flex flex-col sm:flex-row gap-3">
-        <select id="goalSemester" class="bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-slate-300 focus:border-purple-500 outline-none">
-          <option value="sem1">Sem 1 (Year 1)</option>
-          <option value="sem2">Sem 2 (Year 1)</option>
-          <option value="sem3">Sem 3 (Year 2)</option>
-          <option value="sem4">Sem 4 (Year 2)</option>
-          <option value="sem5">Sem 5 (Year 3)</option>
-          <option value="sem6">Sem 6 (Year 3)</option>
-          <option value="sem7">Sem 7 (Year 4)</option>
-          <option value="sem8">Sem 8 (Year 4)</option>
-        </select>
-        <input type="text" id="goalTitle" placeholder="e.g., Learn Rust, Complete 50 DP Questions..." required class="flex-1 bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-slate-200 focus:border-purple-500 outline-none">
-        <button type="submit" class="px-6 py-2.5 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-medium text-sm rounded-xl transition-all shadow-lg shadow-purple-600/30">
-          Add Goal (+50 XP)
-        </button>
-      </form>
+    <!-- SEMESTER ROADMAP PANELS -->
+    <div id="content-y1" class="tab-panel space-y-6 hidden">
+      <div class="glass-panel rounded-2xl p-6 border-l-4 border-l-emerald-500">
+        <h3 class="text-xl font-bold text-white">Year 1: Building Unshakable Fundamentals</h3>
+        <p class="text-xs text-slate-400 mt-1">Semesters 1 & 2 • Focus: C/C++, Linux CLI, Mathematics & Basic Data Structures</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="glass-panel rounded-2xl p-5 space-y-4">
+          <h4 class="font-bold text-purple-400 border-b border-slate-800 pb-2">Semester 1: C Programming & Development Tools</h4>
+          <ul id="list-sem1" class="space-y-3"></ul>
+        </div>
+        <div class="glass-panel rounded-2xl p-5 space-y-4">
+          <h4 class="font-bold text-cyan-400 border-b border-slate-800 pb-2">Semester 2: OOPs & Discrete Structures</h4>
+          <ul id="list-sem2" class="space-y-3"></ul>
+        </div>
+      </div>
+    </div>
+
+    <div id="content-y2" class="tab-panel space-y-6 hidden">
+      <div class="glass-panel rounded-2xl p-6 border-l-4 border-l-cyan-500">
+        <h3 class="text-xl font-bold text-white">Year 2: Programming Excellence & Core CS</h3>
+        <p class="text-xs text-slate-400 mt-1">Semesters 3 & 4 • Focus: Advanced DSA, OS, DBMS, Networks & LeetCode</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="glass-panel rounded-2xl p-5 space-y-4">
+          <h4 class="font-bold text-purple-400 border-b border-slate-800 pb-2">Semester 3: DSA Foundations & DBMS</h4>
+          <ul id="list-sem3" class="space-y-3"></ul>
+        </div>
+        <div class="glass-panel rounded-2xl p-5 space-y-4">
+          <h4 class="font-bold text-cyan-400 border-b border-slate-800 pb-2">Semester 4: Advanced DSA, OS & Networks</h4>
+          <ul id="list-sem4" class="space-y-3"></ul>
+        </div>
+      </div>
+    </div>
+
+    <div id="content-y3" class="tab-panel space-y-6 hidden">
+      <div class="glass-panel rounded-2xl p-6 border-l-4 border-l-purple-500">
+        <h3 class="text-xl font-bold text-white">Year 3: Specialization, Projects & Internships</h3>
+        <p class="text-xs text-slate-400 mt-1">Semesters 5 & 6 • Focus: MERN/AI Specialization, Hackathons & Paid Summer Internships</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="glass-panel rounded-2xl p-5 space-y-4">
+          <h4 class="font-bold text-purple-400 border-b border-slate-800 pb-2">Semester 5: Tech Specialization & Hackathons</h4>
+          <ul id="list-sem5" class="space-y-3"></ul>
+        </div>
+        <div class="glass-panel rounded-2xl p-5 space-y-4">
+          <h4 class="font-bold text-emerald-400 border-b border-slate-800 pb-2">Semester 6: Low Level Design & Summer Internship</h4>
+          <ul id="list-sem6" class="space-y-3"></ul>
+        </div>
+      </div>
+    </div>
+
+    <div id="content-y4" class="tab-panel space-y-6 hidden">
+      <div class="glass-panel rounded-2xl p-6 border-l-4 border-l-rose-500">
+        <h3 class="text-xl font-bold text-white">Year 4: Job Readiness & Placement Sprints</h3>
+        <p class="text-xs text-slate-400 mt-1">Semesters 7 & 8 • Focus: Top 100 Interview Prep, System Design (HLD), Major Capstone</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="glass-panel rounded-2xl p-5 space-y-4">
+          <h4 class="font-bold text-amber-400 border-b border-slate-800 pb-2">Semester 7: Placement Sprints & HLD</h4>
+          <ul id="list-sem7" class="space-y-3"></ul>
+        </div>
+        <div class="glass-panel rounded-2xl p-5 space-y-4">
+          <h4 class="font-bold text-rose-400 border-b border-slate-800 pb-2">Semester 8: Major Project & Corporate Onboarding</h4>
+          <ul id="list-sem8" class="space-y-3"></ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECTS BLUEPRINTS -->
+    <div id="content-projects" class="tab-panel space-y-6 hidden">
+      <div class="glass-panel rounded-2xl p-6 border-l-4 border-l-amber-500">
+        <h3 class="text-xl font-bold text-white">Recommended Portfolio Projects</h3>
+        <p class="text-xs text-slate-400 mt-1">Build these step-by-step to construct a high-impact GitHub portfolio for engineering interviews.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="projectsGrid"></div>
     </div>
 
   </main>
 
-  <!-- JAVASCRIPT LOGIC -->
+  <!-- ADD GOAL MODAL -->
+  <div id="goalModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="glass-panel rounded-2xl p-6 max-w-md w-full space-y-4 border-purple-500/30">
+      <div class="flex justify-between items-center">
+        <h3 class="text-base font-bold text-white">Add Custom Quest Target</h3>
+        <button onclick="closeGoalModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form onsubmit="addCustomQuest(event)" class="space-y-3">
+        <div>
+          <label class="block text-xs font-mono text-slate-400 mb-1">Target Semester</label>
+          <select id="goalSem" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-200 outline-none focus:border-purple-500">
+            <option value="sem1">Sem 1 (Year 1)</option>
+            <option value="sem2">Sem 2 (Year 1)</option>
+            <option value="sem3">Sem 3 (Year 2)</option>
+            <option value="sem4">Sem 4 (Year 2)</option>
+            <option value="sem5">Sem 5 (Year 3)</option>
+            <option value="sem6">Sem 6 (Year 3)</option>
+            <option value="sem7">Sem 7 (Year 4)</option>
+            <option value="sem8">Sem 8 (Year 4)</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs font-mono text-slate-400 mb-1">Quest Title</label>
+          <input type="text" id="goalTitle" placeholder="e.g. Solve 50 DP Questions, Learn Rust..." required class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-200 outline-none focus:border-purple-500">
+        </div>
+        <div class="pt-2 flex gap-2">
+          <button type="submit" class="w-full py-2.5 bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs rounded-xl transition-all">Add Goal (+50 XP)</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <script>
-    // TASK DATA STRUCTURE
     const defaultData = {
       sem1: [
         { id: 's1_1', title: 'Master C Syntax, Control Structures & Loops', xp: 40 },
-        { id: 's1_2', title: 'Understand Pointers, Dynamic Memory Allocation (malloc/free)', xp: 50 },
-        { id: 's1_3', title: 'Set up Linux CLI Terminal & Learn Git/GitHub Workflow', xp: 40 },
-        { id: 's1_4', title: 'Complete Calculus, Linear Algebra & Physics Fundamentals', xp: 30 },
-        { id: 's1_5', title: 'Build Project: C Console Bank / Library Management System', xp: 60 }
+        { id: 's1_2', title: 'Pointers, Dynamic Memory Allocation (malloc/free)', xp: 50 },
+        { id: 's1_3', title: 'Linux CLI Terminal & Git/GitHub Version Control', xp: 40 },
+        { id: 's1_4', title: 'Calculus, Linear Algebra & Digital Logic', xp: 30 }
       ],
       sem2: [
-        { id: 's2_1', title: 'Master OOP Concepts in C++ or Java (Class, Inheritance, Polymorphism)', xp: 50 },
-        { id: 's2_2', title: 'Understand Arrays, Strings, Recursion & Basic Searching', xp: 40 },
-        { id: 's2_3', title: 'Study Discrete Mathematics (Logic, Graph Theory, Combinatorics)', xp: 40 },
-        { id: 's2_4', title: 'Learn Digital Logic & Computer Hardware Architecture Basics', xp: 30 },
-        { id: 's2_5', title: 'Build Project: Object-Oriented Inventory Management System', xp: 60 }
+        { id: 's2_1', title: 'OOPs Concepts in C++ or Java (Classes, Inheritance)', xp: 50 },
+        { id: 's2_2', title: 'Arrays, Strings, Recursion & Basic Searching', xp: 40 },
+        { id: 's2_3', title: 'Discrete Mathematics & Graph Theory Foundations', xp: 40 }
       ],
       sem3: [
-        { id: 's3_1', title: 'Master Data Structures: Linked Lists, Stacks, Queues & Trees', xp: 60 },
-        { id: 's3_2', title: 'Solve 100+ Easy/Medium DSA Problems on LeetCode/CodeStudio', xp: 80 },
-        { id: 's3_3', title: 'Master Relational Databases (DBMS) & SQL Queries', xp: 50 },
-        { id: 's3_4', title: 'Learn Computer Organization & Architecture (COA)', xp: 40 },
-        { id: 's3_5', title: 'Build Project: Relational Database E-Commerce Backend System', xp: 70 }
+        { id: 's3_1', title: 'Linked Lists, Stacks, Queues & Binary Trees', xp: 60 },
+        { id: 's3_2', title: 'Relational Databases (DBMS) & Complex SQL Queries', xp: 50 },
+        { id: 's3_3', title: 'Solve 100+ Problems on LeetCode/CodeStudio', xp: 70 }
       ],
       sem4: [
-        { id: 's4_1', title: 'Master Advanced Algorithms: Graphs, Dynamic Programming & Dynamic Trees', xp: 80 },
-        { id: 's4_2', title: 'Study Operating Systems (Threads, CPU Scheduling, Deadlocks, Memory)', xp: 60 },
-        { id: 's4_3', title: 'Study Computer Networks (OSI Model, TCP/IP, Sockets, HTTP/HTTPS)', xp: 60 },
-        { id: 's4_4', title: 'Reach 250+ LeetCode Solved & Participate in Codeforces/CodeChef', xp: 90 },
-        { id: 's4_5', title: 'Build Project: Multi-Threaded Web Server or TCP Chat App', xp: 80 }
+        { id: 's4_1', title: 'Graphs, Dynamic Programming & Greedy Algorithms', xp: 80 },
+        { id: 's4_2', title: 'Operating Systems (Threads, Deadlocks, Memory)', xp: 60 },
+        { id: 's4_3', title: 'Computer Networks (TCP/IP, Sockets, HTTP/HTTPS)', xp: 60 }
       ],
       sem5: [
-        { id: 's5_1', title: 'Choose Specialization: Full-Stack Web (MERN) or Data Science/AI', xp: 70 },
-        { id: 's5_2', title: 'Build Full-Stack App with Authentication, REST API & Database', xp: 90 },
-        { id: 's5_3', title: 'Participate in National Hackathons (e.g., Smart India Hackathon)', xp: 100 },
-        { id: 's5_4', title: 'Study Software Engineering & Object-Oriented Analysis', xp: 40 },
-        { id: 's5_5', title: 'Contribute to Open Source Projects on GitHub (Hacktoberfest)', xp: 80 }
+        { id: 's5_1', title: 'Tech Specialization: Full-Stack (MERN) or Data Science/AI', xp: 80 },
+        { id: 's5_2', title: 'Participate in Hackathons (e.g. Smart India Hackathon)', xp: 90 },
+        { id: 's5_3', title: 'Open Source GitHub Contributions', xp: 70 }
       ],
       sem6: [
-        { id: 's6_1', title: 'Build Capstone Web App / AI Model with Real-time WebSockets', xp: 100 },
-        { id: 's6_2', title: 'Master Low-Level Design (LLD): SOLID Principles & Design Patterns', xp: 80 },
-        { id: 's6_3', title: 'Prepare Professional Resume, Portfolio Site & LinkedIn Profile', xp: 50 },
-        { id: 's6_4', title: 'Apply for Off-Campus & On-Campus Summer Internships', xp: 90 },
-        { id: 's6_5', title: 'Secure & Complete 2-3 Months Summer Tech Internship', xp: 150 }
+        { id: 's6_1', title: 'Master Low Level Design (LLD) & SOLID Principles', xp: 80 },
+        { id: 's6_2', title: 'Build Full-Stack Capstone SaaS Application', xp: 100 },
+        { id: 's6_3', title: 'Apply and Secure Summer Tech Internship', xp: 150 }
       ],
       sem7: [
-        { id: 's7_1', title: 'Revise Top 100 DSA Interview Problems (Blind 75 / Striver SDE Sheet)', xp: 100 },
-        { id: 's7_2', title: 'Master High-Level System Design (HLD): Caching, Load Balancers, Sharding', xp: 90 },
-        { id: 's7_3', title: 'Practice Quantitative Aptitude, Logical Reasoning & Behavioral HR Prep', xp: 60 },
-        { id: 's7_4', title: 'Perform 10+ Mock Technical Interviews with Peers / Mentors', xp: 80 },
-        { id: 's7_5', title: 'Sit for On-Campus Placement Drives & Off-Campus Hiring Sprints', xp: 120 }
+        { id: 's7_1', title: 'Top 100 DSA Revision (Striver SDE Sheet / Blind 75)', xp: 100 },
+        { id: 's7_2', title: 'High Level System Design (HLD): Caching, Load Balancers', xp: 90 },
+        { id: 's7_3', title: 'Mock Technical & HR Interview Practice', xp: 80 }
       ],
       sem8: [
-        { id: 's8_1', title: 'Develop Major Final Year College Project with Complete Documentation', xp: 100 },
-        { id: 's8_2', title: 'Deploy Major Project on AWS/Vercel with CI/CD Pipeline & Docker', xp: 80 },
-        { id: 's8_3', title: 'Publish Research Paper or Software Engineering Tech Article', xp: 70 },
-        { id: 's8_4', title: 'Finalize Full-Time Job Offer & Clear Pre-Onboarding Assessment', xp: 200 },
-        { id: 's8_5', title: 'Graduate B.Tech CST with Honors & High Engineering Portfolio', xp: 250 }
+        { id: 's8_1', title: 'Major Final Year College Capstone Project', xp: 120 },
+        { id: 's8_2', title: 'Cloud Deployment (AWS/Vercel) & CI/CD Pipelines', xp: 90 },
+        { id: 's8_3', title: 'Graduate B.Tech CST & Finalize Placement Offers', xp: 200 }
       ]
     };
 
-    const projectsData = [
-      {
-        title: 'C Console Bank System',
-        sem: 'Year 1 (Sem 1)',
-        tech: ['C', 'File I/O', 'Structs'],
-        desc: 'Console-based banking application supporting user accounts, transaction logging, and encrypted persistent storage in files.'
-      },
-      {
-        title: 'Multi-Threaded HTTP Server',
-        sem: 'Year 2 (Sem 4)',
-        tech: ['C++', 'POSA Threads', 'Sockets'],
-        desc: 'Custom HTTP server handling concurrent web browser requests, static file serving, and socket communication from scratch.'
-      },
-      {
-        title: 'MERN Social / SaaS Platform',
-        sem: 'Year 3 (Sem 5)',
-        tech: ['React', 'Node.js', 'Express', 'MongoDB'],
-        desc: 'Full-stack responsive application with JWT authentication, real-time messaging, state management, and Cloudinary media upload.'
-      },
-      {
-        title: 'Real-time Collaborative Code Editor',
-        sem: 'Year 3 (Sem 6)',
-        tech: ['React', 'Socket.io', 'Monaco Editor'],
-        desc: 'Interactive live editor enabling multiple users to write code concurrently with real-time cursor tracking and compilation.'
-      },
-      {
-        title: 'Microservices E-Commerce System',
-        sem: 'Year 4 (Sem 7)',
-        tech: ['Node.js', 'Docker', 'Redis', 'Kafka'],
-        desc: 'Scaled microservice architecture featuring caching layers, message broker queues, rate limiting, and payment gateway.'
-      },
-      {
-        title: 'Major Final Year AI / Web Capstone',
-        sem: 'Year 4 (Sem 8)',
-        tech: ['Python/MERN', 'Docker', 'AWS', 'CI/CD'],
-        desc: 'Complete production-ready product deployed on cloud with monitoring, automated tests, and interactive user dashboard.'
-      }
+    const badges = [
+      { id: 'b_c', name: 'C/C++ Veteran', desc: 'Completed Year 1 Fundamentals', icon: 'fa-code' },
+      { id: 'b_dsa', name: 'DSA Specialist', desc: 'Mastered Trees, Graphs & DP', icon: 'fa-brain' },
+      { id: 'b_full', name: 'Full-Stack Craftsman', desc: 'Built production web apps', icon: 'fa-layer-group' },
+      { id: 'b_sys', name: 'System Designer', desc: 'Mastered LLD & HLD patterns', icon: 'fa-sitemap' },
+      { id: 'b_intern', name: 'Internship Secured', desc: 'Cleared internship drive', icon: 'fa-briefcase' },
+      { id: 'b_titan', name: 'CS Maestro', desc: 'Reached Level 5+ in CyberQuest', icon: 'fa-crown' }
     ];
 
-    const badgesData = [
-      { id: 'badge_c', title: 'C Programming Master', desc: 'Complete Semester 1 C language & CLI milestones.', icon: 'fa-terminal', color: 'text-purple-400' },
-      { id: 'badge_dsa', title: 'DSA Warrior', desc: 'Complete Semester 3 Data Structures curriculum.', icon: 'fa-brain', color: 'text-cyan-400' },
-      { id: 'badge_hack', title: 'Hackathon Champion', desc: 'Complete Semester 5 Web Dev & Hackathon goals.', icon: 'fa-trophy', color: 'text-amber-400' },
-      { id: 'badge_intern', title: 'Internship Ready', desc: 'Complete Semester 6 Internship prep & LLD.', icon: 'fa-briefcase', color: 'text-emerald-400' },
-      { id: 'badge_titan', title: 'Software Engineering Titan', desc: 'Complete Year 4 Placement Sprints & Final Capstone.', icon: 'fa-crown', color: 'text-pink-400' }
+    const projects = [
+      { title: 'CLI Banking Engine', sem: 'Year 1', desc: 'File-backed console banking system in C/C++ with user authentication.', tech: ['C++', 'File I/O'] },
+      { title: 'Concurrent Web Server', sem: 'Year 2', desc: 'Multi-threaded socket HTTP web server built from scratch.', tech: ['C++', 'Sockets', 'POSIX Threads'] },
+      { title: 'Full-Stack SaaS Platform', sem: 'Year 3', desc: 'Complete Web App with JWT auth, payment gateway, and dynamic backend API.', tech: ['React', 'Node.js', 'MongoDB'] },
+      { title: 'Collaborative Code Editor', sem: 'Year 3', desc: 'Real-time multi-user code editor with live WebSockets syncing.', tech: ['WebSockets', 'React', 'Monaco'] },
+      { title: 'Distributed Cache System', sem: 'Year 4', desc: 'In-memory Key-Value cache store with LRU eviction policy.', tech: ['System Design', 'Redis', 'Node.js'] },
+      { title: 'Major Capstone App', sem: 'Year 4', desc: 'Deployed full-scale web product on AWS with Docker and CI/CD.', tech: ['Docker', 'AWS', 'MERN'] }
     ];
 
-    const resourcesData = [
-      { name: 'NPTEL Computer Science', type: 'Courses', url: 'https://nptel.ac.in', desc: 'IIT/IISc video lectures for core CS subjects like OS, DBMS, Networks, and Algorithms.' },
-      { name: 'LeetCode', type: 'Practice', url: 'https://leetcode.com', desc: 'The gold standard platform for practicing Data Structures & Algorithms coding challenges.' },
-      { name: 'Striver SDE Sheet (TakeUForward)', type: 'DSA Guide', url: 'https://takeuforward.org', desc: 'Top curated list of 180+ interview problems covering all algorithmic concepts.' },
-      { name: 'ByteByteGo System Design', type: 'System Design', url: 'https://youtube.com', desc: 'Visual breakdowns of High-Level System Design, distributed systems, and backend architecture.' },
-      { name: 'Roadmap.sh', type: 'Guides', url: 'https://roadmap.sh', desc: 'Community-driven developer roadmaps for Frontend, Backend, DevOps, and Computer Science.' },
-      { name: 'GeeksforGeeks CS Core', type: 'Articles', url: 'https://geeksforgeeks.org', desc: 'Quick reference notes for OS, DBMS, Networks, Digital Logic, and C++ OOPs.' }
-    ];
+    let tasks = JSON.parse(localStorage.getItem('cq_tasks')) || defaultData;
+    let completed = JSON.parse(localStorage.getItem('cq_completed')) || {};
 
-    // STATE MANAGEMENT
-    let tasks = JSON.parse(localStorage.getItem('cst_tasks')) || defaultData;
-    let completedTasks = JSON.parse(localStorage.getItem('cst_completed')) || {};
-    let soundEnabled = JSON.parse(localStorage.getItem('cst_sound')) ?? true;
-
-    // AUDIO SYNTHESIS FOR SFX
-    function playSfx(type) {
-      if (!soundEnabled) return;
-      try {
-        const ctx = new (window.AudioContext || window.webkitAudioContext)();
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-
-        if (type === 'check') {
-          osc.frequency.setValueAtTime(523.25, ctx.currentTime); // C5
-          osc.frequency.exponentialRampToValueAtTime(659.25, ctx.currentTime + 0.1); // E5
-          gain.gain.setValueAtTime(0.15, ctx.currentTime);
-          gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.15);
-          osc.start();
-          osc.stop(ctx.currentTime + 0.15);
-        } else if (type === 'badge') {
-          osc.frequency.setValueAtTime(440, ctx.currentTime);
-          osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.25);
-          gain.gain.setValueAtTime(0.2, ctx.currentTime);
-          gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
-          osc.start();
-          osc.stop(ctx.currentTime + 0.3);
-        }
-      } catch (e) {}
-    }
-
-    function toggleSound() {
-      soundEnabled = !soundEnabled;
-      localStorage.setItem('cst_sound', JSON.stringify(soundEnabled));
-      document.getElementById('soundToggle').innerHTML = soundEnabled 
-        ? '<i class="fa-solid fa-volume-high text-sm"></i>' 
-        : '<i class="fa-solid fa-volume-xmark text-sm text-red-400"></i>';
-    }
-
-    // INITIALIZATION & RENDERING
     function init() {
       renderSemesters();
-      renderProjects();
       renderBadges();
-      renderResources();
+      renderProjects();
       updateStats();
     }
 
     function switchTab(tabId) {
       document.querySelectorAll('.tab-panel').forEach(el => el.classList.add('hidden'));
       document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.classList.remove('bg-purple-600', 'text-white', 'shadow-lg', 'shadow-purple-600/30');
-        btn.classList.add('bg-slate-900', 'text-slate-400');
+        btn.classList.remove('bg-purple-600', 'text-white', 'shadow-lg');
+        btn.classList.add('bg-[#0b1120]', 'text-slate-400');
       });
 
       document.getElementById(`content-${tabId}`).classList.remove('hidden');
       const activeBtn = document.getElementById(`tab-${tabId}`);
-      activeBtn.classList.remove('bg-slate-900', 'text-slate-400');
-      activeBtn.classList.add('bg-purple-600', 'text-white', 'shadow-lg', 'shadow-purple-600/30');
+      activeBtn.classList.remove('bg-[#0b1120]', 'text-slate-400');
+      activeBtn.classList.add('bg-purple-600', 'text-white', 'shadow-lg');
     }
 
     function renderSemesters() {
-      for (let sem = 1; sem <= 8; sem++) {
-        const semKey = `sem${sem}`;
-        const container = document.getElementById(`${semKey}List`);
+      for (let i = 1; i <= 8; i++) {
+        const key = `sem${i}`;
+        const container = document.getElementById(`list-${key}`);
         if (!container) continue;
 
-        const semTasks = tasks[semKey] || [];
         container.innerHTML = '';
-
-        semTasks.forEach(task => {
-          const isChecked = !!completedTasks[task.id];
+        (tasks[key] || []).forEach(t => {
+          const isDone = !!completed[t.id];
           const li = document.createElement('li');
-          li.className = `flex items-start justify-between gap-3 p-3 rounded-xl transition-all ${
-            isChecked ? 'bg-purple-500/10 border border-purple-500/20' : 'bg-slate-900/60 border border-slate-800 hover:border-slate-700'
+          li.className = `flex items-center justify-between p-3 rounded-xl border transition-all ${
+            isDone ? 'bg-purple-500/10 border-purple-500/30' : 'bg-slate-900/60 border-slate-800 hover:border-slate-700'
           }`;
-
           li.innerHTML = `
-            <div class="flex items-start gap-3">
-              <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleTask('${semKey}', '${task.id}')" class="custom-checkbox mt-0.5">
+            <div class="flex items-center gap-3">
+              <input type="checkbox" ${isDone ? 'checked' : ''} onchange="toggleTask('${t.id}')" class="custom-chk">
               <div>
-                <div class="text-xs sm:text-sm font-medium ${isChecked ? 'line-through text-slate-400' : 'text-slate-200'}">
-                  ${task.title}
-                </div>
-                <span class="inline-block text-[10px] font-mono text-purple-400 mt-1">+${task.xp} XP</span>
+                <span class="text-xs font-medium ${isDone ? 'line-through text-slate-500' : 'text-slate-200'}">${t.title}</span>
+                <span class="block text-[10px] font-mono text-purple-400">+${t.xp} XP</span>
               </div>
             </div>
-            ${task.custom ? `<button onclick="deleteCustomGoal('${semKey}', '${task.id}')" class="text-slate-500 hover:text-red-400 text-xs"><i class="fa-solid fa-trash"></i></button>` : ''}
+            ${t.custom ? `<button onclick="deleteQuest('${key}', '${t.id}')" class="text-slate-600 hover:text-red-400 text-xs"><i class="fa-solid fa-trash"></i></button>` : ''}
           `;
           container.appendChild(li);
         });
-
-        // Update sem progress percentage text
-        const doneCount = semTasks.filter(t => completedTasks[t.id]).length;
-        const totalSem = semTasks.length;
-        const percent = totalSem > 0 ? Math.round((doneCount / totalSem) * 100) : 0;
-        const progText = document.getElementById(`${semKey}ProgressText`);
-        if (progText) progText.textContent = `${percent}% Done`;
       }
     }
 
-    function toggleTask(semKey, taskId) {
-      completedTasks[taskId] = !completedTasks[taskId];
-      if (completedTasks[taskId]) {
-        playSfx('check');
-        confetti({ particleCount: 30, spread: 60, origin: { y: 0.8 } });
-      }
-      localStorage.setItem('cst_completed', JSON.stringify(completedTasks));
-      renderSemesters();
-      renderBadges();
-      updateStats();
-    }
-
-    function addCustomGoal(e) {
-      e.preventDefault();
-      const semKey = document.getElementById('goalSemester').value;
-      const title = document.getElementById('goalTitle').value.trim();
-      if (!title) return;
-
-      const newId = 'custom_' + Date.now();
-      const newTask = { id: newId, title: title, xp: 50, custom: true };
-
-      tasks[semKey].push(newTask);
-      localStorage.setItem('cst_tasks', JSON.stringify(tasks));
-      document.getElementById('goalTitle').value = '';
-      renderSemesters();
-      updateStats();
-    }
-
-    function deleteCustomGoal(semKey, taskId) {
-      tasks[semKey] = tasks[semKey].filter(t => t.id !== taskId);
-      delete completedTasks[taskId];
-      localStorage.setItem('cst_tasks', JSON.stringify(tasks));
-      localStorage.setItem('cst_completed', JSON.stringify(completedTasks));
+    function toggleTask(id) {
+      completed[id] = !completed[id];
+      if (completed[id]) confetti({ particleCount: 25, spread: 50, origin: { y: 0.8 } });
+      localStorage.setItem('cq_completed', JSON.stringify(completed));
       renderSemesters();
       updateStats();
     }
 
     function updateStats() {
-      let totalXp = 0;
-      let totalTasks = 0;
-      let completedCount = 0;
-
-      Object.keys(tasks).forEach(semKey => {
-        tasks[semKey].forEach(task => {
-          totalTasks++;
-          if (completedTasks[task.id]) {
-            completedCount++;
-            totalXp += task.xp;
+      let total = 0, done = 0, xp = 0;
+      Object.keys(tasks).forEach(k => {
+        tasks[k].forEach(t => {
+          total++;
+          if (completed[t.id]) {
+            done++;
+            xp += t.xp;
           }
         });
       });
 
-      // Level & Rank calculations
-      const level = Math.floor(totalXp / 200) + 1;
-      const currentLevelBaseXp = (level - 1) * 200;
-      const xpInCurrentLevel = totalXp - currentLevelBaseXp;
-      const xpPercent = Math.min(100, Math.round((xpInCurrentLevel / 200) * 100));
+      const lvl = Math.floor(xp / 400) + 1;
+      const nextXp = lvl * 400;
+      const xpPercent = Math.min(100, Math.round(((xp % 400) / 400) * 100));
+      const percent = total > 0 ? Math.round((done / total) * 100) : 0;
 
-      const ranks = [
-        'Freshman Recruit', 'C Code Ninja', 'Logic Pioneer', 'DSA Sentinel', 
-        'Algorithm Architect', 'Full-Stack Developer', 'System Specialist', 
-        'Placement Warrior', 'Engineering Lead', 'Software Titan'
-      ];
-      const rankTitle = ranks[Math.min(level - 1, ranks.length - 1)];
+      const ranks = ['Freshman Recruit', 'C++ Veteran', 'DSA Specialist', 'Full-Stack Craftsman', 'System Architect', 'CS Maestro'];
+      const rank = ranks[Math.min(lvl - 1, ranks.length - 1)];
 
-      document.getElementById('levelNum').textContent = level;
-      document.getElementById('rankTitle').textContent = rankTitle;
-      document.getElementById('currentXp').textContent = totalXp;
-      document.getElementById('nextLevelXp').textContent = level * 200;
+      document.getElementById('rankTitle').textContent = rank;
+      document.getElementById('levelNum').textContent = lvl;
+      document.getElementById('currentXp').textContent = xp;
+      document.getElementById('nextLvlXp').textContent = nextXp;
       document.getElementById('xpBar').style.width = `${xpPercent}%`;
 
-      // Overall Progress
-      document.getElementById('completedTasksCount').textContent = completedCount;
-      document.getElementById('totalTasksCount').textContent = totalTasks;
+      document.getElementById('heroRank').textContent = rank;
+      document.getElementById('heroXp').textContent = xp;
+      document.getElementById('heroNextXp').textContent = nextXp;
+      document.getElementById('heroXpBar').style.width = `${xpPercent}%`;
 
-      const overallPercent = totalTasks > 0 ? Math.round((completedCount / totalTasks) * 100) : 0;
-      document.getElementById('overallPercentText').textContent = `${overallPercent}%`;
-      document.getElementById('overallCircle').setAttribute('stroke-dasharray', `${overallPercent}, 100`);
+      document.getElementById('statDone').textContent = done;
+      document.getElementById('statTotal').textContent = total;
+      document.getElementById('statXp').textContent = xp;
+      document.getElementById('statPercent').textContent = percent;
+
+      renderBadges(lvl, done);
+    }
+
+    function renderBadges(lvl = 1, done = 0) {
+      const container = document.getElementById('badgesContainer');
+      container.innerHTML = '';
+
+      let unlockedCount = 0;
+      badges.forEach((b, idx) => {
+        const isUnlocked = idx === 0 ? done >= 2 : idx === 1 ? done >= 7 : idx === 2 ? done >= 12 : idx === 3 ? done >= 17 : idx === 4 ? done >= 22 : lvl >= 5;
+        if (isUnlocked) unlockedCount++;
+
+        const div = document.createElement('div');
+        div.className = `glass-card rounded-xl p-3 text-center space-y-2 ${isUnlocked ? 'border-purple-500/40 bg-purple-500/10' : 'opacity-40 grayscale'}`;
+        div.innerHTML = `
+          <div class="w-9 h-9 mx-auto rounded-lg bg-slate-900 flex items-center justify-center text-purple-400 text-sm">
+            <i class="fa-solid ${b.icon}"></i>
+          </div>
+          <div>
+            <div class="text-[11px] font-bold text-white truncate">${b.name}</div>
+            <div class="text-[9px] text-slate-400 truncate">${b.desc}</div>
+          </div>
+        `;
+        container.appendChild(div);
+      });
+
+      document.getElementById('statBadges').textContent = unlockedCount;
     }
 
     function renderProjects() {
-      const container = document.getElementById('projectsContainer');
+      const container = document.getElementById('projectsGrid');
       container.innerHTML = '';
-
-      projectsData.forEach(proj => {
+      projects.forEach(p => {
         const div = document.createElement('div');
-        div.className = 'glass-card rounded-2xl p-6 flex flex-col justify-between space-y-4 hover:border-purple-500/40 transition-all';
+        div.className = 'glass-panel rounded-2xl p-5 flex flex-col justify-between space-y-3';
         div.innerHTML = `
           <div>
-            <span class="text-[10px] font-mono px-2.5 py-1 bg-purple-500/10 text-purple-300 rounded-md border border-purple-500/20">${proj.sem}</span>
-            <h4 class="text-lg font-bold text-white mt-3">${proj.title}</h4>
-            <p class="text-xs text-slate-400 mt-2 leading-relaxed">${proj.desc}</p>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 border border-purple-500/30">${p.sem}</span>
+            <h4 class="text-sm font-bold text-white mt-2">${p.title}</h4>
+            <p class="text-xs text-slate-400 mt-1">${p.desc}</p>
           </div>
-          <div>
-            <div class="flex flex-wrap gap-1.5 mb-4">
-              ${proj.tech.map(t => `<span class="text-[10px] font-mono px-2 py-0.5 bg-slate-900 border border-slate-800 text-slate-300 rounded">${t}</span>`).join('')}
-            </div>
-            <button onclick="alert('Blueprint: Plan models, structure Git commits, write tests, and document in README.md!')" class="w-full py-2 bg-slate-900 hover:bg-purple-600/20 border border-slate-800 hover:border-purple-500/40 text-xs font-semibold text-purple-300 rounded-xl transition-all">
-              View Project Blueprint
-            </button>
+          <div class="flex flex-wrap gap-1">
+            ${p.tech.map(t => `<span class="text-[9px] font-mono px-2 py-0.5 bg-slate-900 border border-slate-800 text-slate-300 rounded">${t}</span>`).join('')}
           </div>
         `;
         container.appendChild(div);
       });
     }
 
-    function renderBadges() {
-      const container = document.getElementById('badgesContainer');
-      container.innerHTML = '';
-      let unlockedCount = 0;
+    function openGoalModal() { document.getElementById('goalModal').classList.remove('hidden'); }
+    function closeGoalModal() { document.getElementById('goalModal').classList.add('hidden'); }
 
-      // Logic to calculate badge unlock requirements
-      const checkSemComplete = (semKeys) => semKeys.every(key => (tasks[key] || []).every(t => completedTasks[t.id]));
+    function addCustomQuest(e) {
+      e.preventDefault();
+      const sem = document.getElementById('goalSem').value;
+      const title = document.getElementById('goalTitle').value.trim();
+      if (!title) return;
 
-      const isUnlocked = {
-        badge_c: checkSemComplete(['sem1']),
-        badge_dsa: checkSemComplete(['sem3']),
-        badge_hack: checkSemComplete(['sem5']),
-        badge_intern: checkSemComplete(['sem6']),
-        badge_titan: checkSemComplete(['sem7', 'sem8'])
-      };
-
-      badgesData.forEach(badge => {
-        const unlocked = isUnlocked[badge.id];
-        if (unlocked) unlockedCount++;
-
-        const div = document.createElement('div');
-        div.className = `glass-card rounded-2xl p-6 flex items-center gap-4 transition-all ${
-          unlocked ? 'border-amber-500/40 bg-amber-500/5' : 'opacity-50 grayscale'
-        }`;
-
-        div.innerHTML = `
-          <div class="w-12 h-12 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-center text-xl ${badge.color}">
-            <i class="fa-solid ${badge.icon}"></i>
-          </div>
-          <div>
-            <h4 class="font-bold text-sm text-white flex items-center gap-2">
-              ${badge.title} ${unlocked ? '<i class="fa-solid fa-circle-check text-amber-400 text-xs"></i>' : ''}
-            </h4>
-            <p class="text-xs text-slate-400 mt-0.5">${badge.desc}</p>
-            <span class="text-[10px] font-mono ${unlocked ? 'text-amber-400' : 'text-slate-500'} mt-1 inline-block">
-              ${unlocked ? 'UNLOCKED' : 'LOCKED'}
-            </span>
-          </div>
-        `;
-        container.appendChild(div);
-      });
-
-      document.getElementById('unlockedBadgesBadge').textContent = unlockedCount;
+      const newId = 'custom_' + Date.now();
+      tasks[sem].push({ id: newId, title: title, xp: 50, custom: true });
+      localStorage.setItem('cq_tasks', JSON.stringify(tasks));
+      closeGoalModal();
+      document.getElementById('goalTitle').value = '';
+      renderSemesters();
+      updateStats();
     }
 
-    function renderResources() {
-      const container = document.getElementById('resourcesContainer');
-      const query = document.getElementById('resourceSearch').value.toLowerCase();
-      container.innerHTML = '';
-
-      const filtered = resourcesData.filter(r => r.name.toLowerCase().includes(query) || r.desc.toLowerCase().includes(query) || r.type.toLowerCase().includes(query));
-
-      filtered.forEach(res => {
-        const div = document.createElement('div');
-        div.className = 'glass-card rounded-2xl p-5 flex flex-col justify-between space-y-3';
-        div.innerHTML = `
-          <div>
-            <div class="flex items-center justify-between">
-              <span class="text-[10px] font-mono px-2 py-0.5 bg-cyan-500/10 text-cyan-400 rounded border border-cyan-500/20">${res.type}</span>
-              <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-500"></i>
-            </div>
-            <h4 class="text-base font-bold text-white mt-2">${res.name}</h4>
-            <p class="text-xs text-slate-400 mt-1">${res.desc}</p>
-          </div>
-          <a href="${res.url}" target="_blank" rel="noopener noreferrer" class="inline-block text-center py-2 bg-slate-900 hover:bg-slate-800 border border-slate-800 text-xs text-purple-300 font-semibold rounded-xl transition-all">
-            Access Resource <i class="fa-solid fa-external-link ml-1"></i>
-          </a>
-        `;
-        container.appendChild(div);
-      });
+    function deleteQuest(sem, id) {
+      tasks[sem] = tasks[sem].filter(t => t.id !== id);
+      delete completed[id];
+      localStorage.setItem('cq_tasks', JSON.stringify(tasks));
+      localStorage.setItem('cq_completed', JSON.stringify(completed));
+      renderSemesters();
+      updateStats();
     }
 
-    function resetProgress() {
-      if (confirm('Are you sure you want to reset all your progress and custom goals?')) {
-        localStorage.removeItem('cst_tasks');
-        localStorage.removeItem('cst_completed');
+    function resetData() {
+      if (confirm('Reset all completed quests and custom goals?')) {
+        localStorage.removeItem('cq_tasks');
+        localStorage.removeItem('cq_completed');
         tasks = JSON.parse(JSON.stringify(defaultData));
-        completedTasks = {};
+        completed = {};
         init();
       }
     }
 
-    // Run application on load
     window.addEventListener('DOMContentLoaded', init);
   </script>
 </body>
