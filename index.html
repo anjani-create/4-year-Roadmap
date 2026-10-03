@@ -3,61 +3,68 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CST CyberQuest - 4-Year B.Tech Roadmap</title>
+  <title>CST CyberQuest - 4-Year B.Tech College Roadmap</title>
+  
+  <!-- Tailwind CSS & FontAwesome -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      color-scheme: dark;
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            darkbg: '#05070e',
+            cardbg: '#0d1322',
+            innerbg: '#121828',
+            accentpurple: '#a855f7',
+            accentcyan: '#06b6d4',
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          }
+        }
+      }
     }
-    html, body {
+  </script>
+
+  <style>
+    body {
       background-color: #05070e !important;
-      color: #e2e8f0 !important;
+      color: #f1f5f9 !important;
       font-family: 'Plus Jakarta Sans', sans-serif;
     }
-    .font-mono { font-family: 'JetBrains Mono', monospace; }
     
-    .bg-cyber-mesh {
+    .bg-cyber-grid {
       background-image: 
-        radial-gradient(circle at 15% 15%, rgba(124, 58, 237, 0.18) 0%, transparent 45%),
-        radial-gradient(circle at 85% 85%, rgba(6, 182, 212, 0.15) 0%, transparent 45%),
-        radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.8) 0%, #05070e 100%);
-      background-attachment: fixed;
+        radial-gradient(circle at 10% 10%, rgba(168, 85, 247, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 90% 90%, rgba(6, 182, 212, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, #0d1322 0%, #05070e 100%);
     }
-    
-    .glass-panel {
-      background: rgba(13, 18, 30, 0.75) !important;
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.07);
-    }
-    
-    .glass-card {
-      background: rgba(18, 24, 40, 0.6) !important;
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    
-    .glass-card:hover {
-      border-color: rgba(168, 85, 247, 0.3);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px -10px rgba(124, 58, 237, 0.2);
-    }
-    
-    .glow-purple { box-shadow: 0 0 20px -5px rgba(168, 85, 247, 0.4); }
-    .text-glow { text-shadow: 0 0 12px rgba(168, 85, 247, 0.6); }
 
-    /* Custom Checkbox */
+    .glass-card {
+      background: rgba(13, 19, 34, 0.8) !important;
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .glass-inner {
+      background: rgba(18, 24, 40, 0.9) !important;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* Checkbox styling */
     .custom-chk {
       appearance: none;
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
       border: 2px solid #334155;
-      border-radius: 6px;
-      background: rgba(15, 23, 42, 0.8);
+      border-radius: 5px;
+      background: #0f172a;
       cursor: pointer;
       position: relative;
       transition: all 0.2s ease;
@@ -65,157 +72,122 @@
     .custom-chk:checked {
       background-color: #a855f7;
       border-color: #c084fc;
-      box-shadow: 0 0 12px rgba(168, 85, 247, 0.8);
+      box-shadow: 0 0 10px rgba(168, 85, 247, 0.6);
     }
     .custom-chk:checked::after {
       content: '✓';
       position: absolute;
       color: white;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 800;
-      top: -2px;
-      left: 3px;
+      top: -3px;
+      left: 2px;
     }
-
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: #05070e; }
-    ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #334155; }
   </style>
 </head>
-<body class="bg-cyber-mesh min-h-screen text-slate-200 antialiased selection:bg-purple-500 selection:text-white pb-20">
+<body class="bg-cyber-grid min-h-screen text-slate-100 antialiased pb-20">
 
-  <!-- TOP HUD NAVIGATION -->
-  <header class="sticky top-0 z-50 bg-[#05070e]/85 backdrop-blur-xl border-b border-slate-800/80">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-      <div class="flex flex-wrap items-center justify-between gap-4">
-        
-        <!-- Branding -->
-        <div class="flex items-center space-x-3">
-          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-600 via-indigo-500 to-cyan-400 p-0.5 glow-purple">
-            <div class="w-full h-full bg-[#080d1a] rounded-[10px] flex items-center justify-center">
-              <i class="fa-solid fa-[#080d1a] fa-terminal text-purple-400 text-sm"></i>
-            </div>
+  <!-- HUD NAVIGATION -->
+  <header class="sticky top-0 z-50 bg-[#05070e]/90 backdrop-blur-md border-b border-slate-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-4">
+      
+      <!-- Logo -->
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-purple-600/20 border border-purple-500/40 flex items-center justify-center text-purple-400 font-bold">
+          <i class="fa-solid fa-terminal text-sm"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-base font-extrabold tracking-tight text-white">CST CYBERQUEST</h1>
+            <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300 border border-purple-500/30">v2.4</span>
           </div>
+          <p class="text-[11px] text-slate-400 font-mono">B.Tech CST Gamified Career Engine</p>
+        </div>
+      </div>
+
+      <!-- Player HUD -->
+      <div class="flex items-center gap-3 sm:gap-6">
+        <div class="flex items-center gap-2.5 bg-[#0d1322] border border-slate-800 px-3.5 py-1.5 rounded-xl">
+          <i class="fa-solid fa-user-astronaut text-purple-400 text-xs"></i>
           <div>
-            <div class="flex items-center gap-2">
-              <h1 class="text-base font-extrabold tracking-tight text-white">CST CYBERQUEST</h1>
-              <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300 border border-purple-500/30">v2.4</span>
-            </div>
-            <p class="text-[11px] text-slate-400 font-mono">B.Tech CST Gamified Career Engine</p>
+            <div class="text-[9px] uppercase font-mono text-slate-400 font-bold">Rank</div>
+            <div class="text-xs font-bold text-purple-300"><span id="rankTitle">Freshman Recruit</span></div>
           </div>
         </div>
 
-        <!-- HUD Player Bar -->
-        <div class="flex items-center gap-3 sm:gap-6">
-          
-          <!-- Rank & Level -->
-          <div class="flex items-center gap-2.5 bg-[#0b1120] border border-slate-800/90 px-3.5 py-1.5 rounded-xl">
-            <div class="w-7 h-7 rounded-lg bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 text-xs">
-              <i class="fa-solid fa-user-astronaut"></i>
-            </div>
-            <div>
-              <div class="text-[9px] uppercase tracking-wider text-slate-400 font-bold font-mono">Rank</div>
-              <div class="text-xs font-bold text-slate-100"><span id="rankTitle" class="text-purple-400">Freshman Recruit</span></div>
-            </div>
+        <div class="flex items-center gap-2 bg-[#0d1322] border border-slate-800 px-3.5 py-1.5 rounded-xl">
+          <i class="fa-solid fa-fire text-amber-500 text-sm"></i>
+          <div>
+            <div class="text-[9px] uppercase font-mono text-slate-400 font-bold">Streak</div>
+            <div class="text-xs font-bold text-amber-400 font-mono"><span id="streakDays">1</span> Day</div>
           </div>
+        </div>
 
-          <!-- Streak -->
-          <div class="flex items-center gap-2 bg-[#0b1120] border border-slate-800/90 px-3.5 py-1.5 rounded-xl">
-            <i class="fa-solid fa-fire text-amber-500 text-base animate-pulse"></i>
-            <div>
-              <div class="text-[9px] uppercase tracking-wider text-slate-400 font-bold font-mono">Streak</div>
-              <div class="text-xs font-bold text-amber-400 font-mono"><span id="streakDays">1</span> Day</div>
-            </div>
+        <div class="hidden sm:flex flex-col min-w-[140px]">
+          <div class="flex justify-between text-[10px] font-mono mb-1 text-slate-300">
+            <span>LVL <span id="levelNum">1</span></span>
+            <span><span id="currentXp">0</span> / <span id="nextLvlXp">400</span> XP</span>
           </div>
-
-          <!-- Level & XP Bar -->
-          <div class="hidden sm:flex flex-col min-w-[150px]">
-            <div class="flex justify-between text-[10px] font-mono mb-1">
-              <span class="text-purple-300 font-bold">LVL <span id="levelNum">1</span></span>
-              <span class="text-slate-400"><span id="currentXp">0</span> / <span id="nextLvlXp">400</span> XP</span>
-            </div>
-            <div class="w-full h-2 bg-slate-900 rounded-full overflow-hidden p-0.5 border border-slate-800">
-              <div id="xpBar" class="h-full bg-gradient-to-r from-purple-500 to-cyan-400 rounded-full transition-all duration-500" style="width: 0%"></div>
-            </div>
+          <div class="w-full h-2 bg-slate-900 rounded-full overflow-hidden border border-slate-800">
+            <div id="xpBar" class="h-full bg-gradient-to-r from-purple-500 to-cyan-400 rounded-full transition-all duration-300" style="width: 0%"></div>
           </div>
-
-          <!-- Controls -->
-          <div class="flex items-center gap-1.5">
-            <button id="soundBtn" onclick="toggleSound()" class="w-9 h-9 rounded-xl bg-[#0b1120] border border-slate-800 text-slate-400 hover:text-purple-400 flex items-center justify-center transition-all">
-              <i class="fa-solid fa-volume-high text-xs"></i>
-            </button>
-            <button onclick="resetData()" class="w-9 h-9 rounded-xl bg-[#0b1120] border border-slate-800 text-slate-400 hover:text-red-400 flex items-center justify-center transition-all" title="Reset Quest Progress">
-              <i class="fa-solid fa-rotate-right text-xs"></i>
-            </button>
-          </div>
-
         </div>
       </div>
     </div>
   </header>
 
-  <!-- MAIN CONTAINER -->
+  <!-- MAIN SECTION -->
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
 
-    <!-- NAVIGATION TABS HUB -->
+    <!-- TAB BUTTONS -->
     <div class="flex items-center gap-2 overflow-x-auto pb-3 mb-6 no-scrollbar border-b border-slate-800/60">
       <button onclick="switchTab('overview')" id="tab-overview" class="tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-purple-600 text-white shadow-lg shadow-purple-600/30 flex items-center gap-2">
         <i class="fa-solid fa-grip"></i> Command Center
       </button>
-      <button onclick="switchTab('y1')" id="tab-y1" class="tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-[#0b1120] text-slate-400 border border-slate-800 hover:text-white flex items-center gap-2">
+      <button onclick="switchTab('y1')" id="tab-y1" class="tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-[#0d1322] text-slate-400 border border-slate-800 hover:text-white flex items-center gap-2">
         <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Y1 Year 1: Fundamentals
       </button>
-      <button onclick="switchTab('y2')" id="tab-y2" class="tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-[#0b1120] text-slate-400 border border-slate-800 hover:text-white flex items-center gap-2">
+      <button onclick="switchTab('y2')" id="tab-y2" class="tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-[#0d1322] text-slate-400 border border-slate-800 hover:text-white flex items-center gap-2">
         <span class="w-2 h-2 rounded-full bg-cyan-400"></span> Y2 Year 2: Programming Mastery
       </button>
-      <button onclick="switchTab('y3')" id="tab-y3" class="tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-[#0b1120] text-slate-400 border border-slate-800 hover:text-white flex items-center gap-2">
+      <button onclick="switchTab('y3')" id="tab-y3" class="tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-[#0d1322] text-slate-400 border border-slate-800 hover:text-white flex items-center gap-2">
         <span class="w-2 h-2 rounded-full bg-purple-400"></span> Y3 Year 3: Projects & Internships
       </button>
-      <button onclick="switchTab('y4')" id="tab-y4" class="tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-[#0b1120] text-slate-400 border border-slate-800 hover:text-white flex items-center gap-2">
+      <button onclick="switchTab('y4')" id="tab-y4" class="tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-[#0d1322] text-slate-400 border border-slate-800 hover:text-white flex items-center gap-2">
         <span class="w-2 h-2 rounded-full bg-rose-400"></span> Y4 Year 4: Job Readiness
-      </button>
-      <button onclick="switchTab('projects')" id="tab-projects" class="tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-[#0b1120] text-slate-400 border border-slate-800 hover:text-white flex items-center gap-2">
-        <i class="fa-solid fa-code-fork text-amber-400"></i> Project Blueprints
       </button>
     </div>
 
-    <!-- COMMAND CENTER OVERVIEW PANEL -->
+    <!-- COMMAND CENTER TAB -->
     <div id="content-overview" class="tab-panel space-y-6">
       
-      <!-- Hero Banner -->
-      <div class="glass-panel rounded-3xl p-6 sm:p-8 relative overflow-hidden border-purple-500/20">
-        <div class="absolute -right-20 -top-20 w-80 h-80 bg-purple-600/15 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute -left-20 -bottom-20 w-80 h-80 bg-cyan-600/15 rounded-full blur-3xl pointer-events-none"></div>
-
-        <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <!-- HERO CARD -->
+      <div class="glass-card rounded-3xl p-6 sm:p-8 relative overflow-hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div class="lg:col-span-8 space-y-4">
             <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-mono">
               <i class="fa-solid fa-graduation-cap"></i> B.TECH COMPUTER SCIENCE & TECHNOLOGY (CST) ROADMAP
             </span>
-            <h2 class="text-3xl sm:text-5xl font-black text-white tracking-tight leading-none">
+            <h2 class="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
               Level Up Your College Journey From <span class="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">Novice To Tech Titan</span>
             </h2>
-            <p class="text-slate-400 text-sm sm:text-base leading-relaxed max-w-2xl">
+            <p class="text-slate-400 text-sm leading-relaxed max-w-2xl">
               Embark on a 4-year gamified journey tailored for B.Tech CST. Complete semester missions, gain XP, unlock badges, build industry projects, and secure top software engineering offers.
             </p>
             <div class="pt-2 flex flex-wrap gap-3">
               <button onclick="switchTab('y1')" class="px-6 py-3 bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs rounded-xl shadow-lg shadow-purple-600/30 transition-all flex items-center gap-2">
                 START YEAR 1 MISSIONS <i class="fa-solid fa-arrow-right"></i>
               </button>
-              <button onclick="openGoalModal()" class="px-5 py-3 bg-slate-900/80 hover:bg-slate-800 text-slate-300 border border-slate-700/80 font-bold text-xs rounded-xl transition-all flex items-center gap-2">
-                <i class="fa-solid fa-plus text-purple-400"></i> ADD CUSTOM QUEST
-              </button>
             </div>
           </div>
 
-          <!-- Hero Level Card -->
-          <div class="lg:col-span-4 bg-[#080d1a]/90 border border-slate-800 rounded-2xl p-6 flex flex-col items-center text-center space-y-3">
-            <div class="w-16 h-16 rounded-2xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 text-2xl glow-purple">
+          <!-- PLAYER STAT CARD -->
+          <div class="lg:col-span-4 bg-[#0a0d18] border border-slate-800 rounded-2xl p-6 flex flex-col items-center text-center space-y-3">
+            <div class="w-16 h-16 rounded-2xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 text-2xl">
               <i class="fa-solid fa-user-astronaut"></i>
             </div>
             <div>
-              <h3 id="heroRank" class="text-xl font-bold text-white">Freshman Recruit</h3>
+              <h3 id="heroRank" class="text-lg font-bold text-white">Freshman Recruit</h3>
               <p class="text-xs text-slate-400 font-mono">Level 1 Engineer</p>
             </div>
             <div class="w-full pt-2">
@@ -223,15 +195,15 @@
                 <span>XP Progress</span>
                 <span class="text-purple-400 font-bold"><span id="heroXp">0</span> / <span id="heroNextXp">400</span> XP</span>
               </div>
-              <div class="w-full h-2.5 bg-slate-900 rounded-full overflow-hidden p-0.5 border border-slate-800">
-                <div id="heroXpBar" class="h-full bg-gradient-to-r from-purple-500 to-cyan-400 rounded-full transition-all duration-500" style="width: 0%"></div>
+              <div class="w-full h-2.5 bg-slate-900 rounded-full overflow-hidden border border-slate-800">
+                <div id="heroXpBar" class="h-full bg-gradient-to-r from-purple-500 to-cyan-400 rounded-full transition-all duration-300" style="width: 0%"></div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Quick Stats Grid -->
+      <!-- STAT METRICS -->
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <div class="glass-card rounded-2xl p-4 flex items-center gap-4">
           <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 text-lg">
@@ -274,9 +246,9 @@
         </div>
       </div>
 
-      <!-- Badges Showcase Section -->
-      <div class="glass-panel rounded-2xl p-6">
-        <h3 class="text-base font-bold text-white mb-4 flex items-center gap-2">
+      <!-- BADGES GRID -->
+      <div class="glass-card rounded-2xl p-6">
+        <h3 class="text-base font-bold text-white mb-2 flex items-center gap-2">
           <i class="fa-solid fa-award text-amber-400"></i> Career Achievement Badges
         </h3>
         <p class="text-xs text-slate-400 mb-4">Unlock these milestones as you complete specific years and targets.</p>
@@ -285,188 +257,140 @@
 
     </div>
 
-    <!-- SEMESTER ROADMAP PANELS -->
+    <!-- YEAR 1 TAB -->
     <div id="content-y1" class="tab-panel space-y-6 hidden">
-      <div class="glass-panel rounded-2xl p-6 border-l-4 border-l-emerald-500">
+      <div class="glass-card rounded-2xl p-6 border-l-4 border-l-emerald-500">
         <h3 class="text-xl font-bold text-white">Year 1: Building Unshakable Fundamentals</h3>
-        <p class="text-xs text-slate-400 mt-1">Semesters 1 & 2 • Focus: C/C++, Linux CLI, Mathematics & Basic Data Structures</p>
+        <p class="text-xs text-slate-400 mt-1">Focus: C/C++, Linux CLI, Discrete Mathematics & Logic</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="glass-panel rounded-2xl p-5 space-y-4">
-          <h4 class="font-bold text-purple-400 border-b border-slate-800 pb-2">Semester 1: C Programming & Development Tools</h4>
+        <div class="glass-card rounded-2xl p-5 space-y-4">
+          <h4 class="font-bold text-purple-400 border-b border-slate-800 pb-2">Semester 1: C Programming & Tools</h4>
           <ul id="list-sem1" class="space-y-3"></ul>
         </div>
-        <div class="glass-panel rounded-2xl p-5 space-y-4">
-          <h4 class="font-bold text-cyan-400 border-b border-slate-800 pb-2">Semester 2: OOPs & Discrete Structures</h4>
+        <div class="glass-card rounded-2xl p-5 space-y-4">
+          <h4 class="font-bold text-cyan-400 border-b border-slate-800 pb-2">Semester 2: OOPs & Discrete Math</h4>
           <ul id="list-sem2" class="space-y-3"></ul>
         </div>
       </div>
     </div>
 
+    <!-- YEAR 2 TAB -->
     <div id="content-y2" class="tab-panel space-y-6 hidden">
-      <div class="glass-panel rounded-2xl p-6 border-l-4 border-l-cyan-500">
-        <h3 class="text-xl font-bold text-white">Year 2: Programming Excellence & Core CS</h3>
-        <p class="text-xs text-slate-400 mt-1">Semesters 3 & 4 • Focus: Advanced DSA, OS, DBMS, Networks & LeetCode</p>
+      <div class="glass-card rounded-2xl p-6 border-l-4 border-l-cyan-500">
+        <h3 class="text-xl font-bold text-white">Year 2: Programming Mastery & Core CS</h3>
+        <p class="text-xs text-slate-400 mt-1">Focus: DSA, OS, DBMS, Networks & LeetCode</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="glass-panel rounded-2xl p-5 space-y-4">
-          <h4 class="font-bold text-purple-400 border-b border-slate-800 pb-2">Semester 3: DSA Foundations & DBMS</h4>
+        <div class="glass-card rounded-2xl p-5 space-y-4">
+          <h4 class="font-bold text-purple-400 border-b border-slate-800 pb-2">Semester 3: DSA & Database Systems</h4>
           <ul id="list-sem3" class="space-y-3"></ul>
         </div>
-        <div class="glass-panel rounded-2xl p-5 space-y-4">
+        <div class="glass-card rounded-2xl p-5 space-y-4">
           <h4 class="font-bold text-cyan-400 border-b border-slate-800 pb-2">Semester 4: Advanced DSA, OS & Networks</h4>
           <ul id="list-sem4" class="space-y-3"></ul>
         </div>
       </div>
     </div>
 
+    <!-- YEAR 3 TAB -->
     <div id="content-y3" class="tab-panel space-y-6 hidden">
-      <div class="glass-panel rounded-2xl p-6 border-l-4 border-l-purple-500">
+      <div class="glass-card rounded-2xl p-6 border-l-4 border-l-purple-500">
         <h3 class="text-xl font-bold text-white">Year 3: Specialization, Projects & Internships</h3>
-        <p class="text-xs text-slate-400 mt-1">Semesters 5 & 6 • Focus: MERN/AI Specialization, Hackathons & Paid Summer Internships</p>
+        <p class="text-xs text-slate-400 mt-1">Focus: Full-Stack (MERN) / AI, Hackathons & Internships</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="glass-panel rounded-2xl p-5 space-y-4">
-          <h4 class="font-bold text-purple-400 border-b border-slate-800 pb-2">Semester 5: Tech Specialization & Hackathons</h4>
+        <div class="glass-card rounded-2xl p-5 space-y-4">
+          <h4 class="font-bold text-purple-400 border-b border-slate-800 pb-2">Semester 5: Specialization & Hackathons</h4>
           <ul id="list-sem5" class="space-y-3"></ul>
         </div>
-        <div class="glass-panel rounded-2xl p-5 space-y-4">
-          <h4 class="font-bold text-emerald-400 border-b border-slate-800 pb-2">Semester 6: Low Level Design & Summer Internship</h4>
+        <div class="glass-card rounded-2xl p-5 space-y-4">
+          <h4 class="font-bold text-emerald-400 border-b border-slate-800 pb-2">Semester 6: Low Level Design & Internships</h4>
           <ul id="list-sem6" class="space-y-3"></ul>
         </div>
       </div>
     </div>
 
+    <!-- YEAR 4 TAB -->
     <div id="content-y4" class="tab-panel space-y-6 hidden">
-      <div class="glass-panel rounded-2xl p-6 border-l-4 border-l-rose-500">
+      <div class="glass-card rounded-2xl p-6 border-l-4 border-l-rose-500">
         <h3 class="text-xl font-bold text-white">Year 4: Job Readiness & Placement Sprints</h3>
-        <p class="text-xs text-slate-400 mt-1">Semesters 7 & 8 • Focus: Top 100 Interview Prep, System Design (HLD), Major Capstone</p>
+        <p class="text-xs text-slate-400 mt-1">Focus: Top 100 DSA Revision, High Level System Design (HLD), Major Capstone</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="glass-panel rounded-2xl p-5 space-y-4">
+        <div class="glass-card rounded-2xl p-5 space-y-4">
           <h4 class="font-bold text-amber-400 border-b border-slate-800 pb-2">Semester 7: Placement Sprints & HLD</h4>
           <ul id="list-sem7" class="space-y-3"></ul>
         </div>
-        <div class="glass-panel rounded-2xl p-5 space-y-4">
-          <h4 class="font-bold text-rose-400 border-b border-slate-800 pb-2">Semester 8: Major Project & Corporate Onboarding</h4>
+        <div class="glass-card rounded-2xl p-5 space-y-4">
+          <h4 class="font-bold text-rose-400 border-b border-slate-800 pb-2">Semester 8: Major Capstone & Offboarding</h4>
           <ul id="list-sem8" class="space-y-3"></ul>
         </div>
       </div>
     </div>
 
-    <!-- PROJECTS BLUEPRINTS -->
-    <div id="content-projects" class="tab-panel space-y-6 hidden">
-      <div class="glass-panel rounded-2xl p-6 border-l-4 border-l-amber-500">
-        <h3 class="text-xl font-bold text-white">Recommended Portfolio Projects</h3>
-        <p class="text-xs text-slate-400 mt-1">Build these step-by-step to construct a high-impact GitHub portfolio for engineering interviews.</p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="projectsGrid"></div>
-    </div>
-
   </main>
-
-  <!-- ADD GOAL MODAL -->
-  <div id="goalModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
-    <div class="glass-panel rounded-2xl p-6 max-w-md w-full space-y-4 border-purple-500/30">
-      <div class="flex justify-between items-center">
-        <h3 class="text-base font-bold text-white">Add Custom Quest Target</h3>
-        <button onclick="closeGoalModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      <form onsubmit="addCustomQuest(event)" class="space-y-3">
-        <div>
-          <label class="block text-xs font-mono text-slate-400 mb-1">Target Semester</label>
-          <select id="goalSem" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-200 outline-none focus:border-purple-500">
-            <option value="sem1">Sem 1 (Year 1)</option>
-            <option value="sem2">Sem 2 (Year 1)</option>
-            <option value="sem3">Sem 3 (Year 2)</option>
-            <option value="sem4">Sem 4 (Year 2)</option>
-            <option value="sem5">Sem 5 (Year 3)</option>
-            <option value="sem6">Sem 6 (Year 3)</option>
-            <option value="sem7">Sem 7 (Year 4)</option>
-            <option value="sem8">Sem 8 (Year 4)</option>
-          </select>
-        </div>
-        <div>
-          <label class="block text-xs font-mono text-slate-400 mb-1">Quest Title</label>
-          <input type="text" id="goalTitle" placeholder="e.g. Solve 50 DP Questions, Learn Rust..." required class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-200 outline-none focus:border-purple-500">
-        </div>
-        <div class="pt-2 flex gap-2">
-          <button type="submit" class="w-full py-2.5 bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs rounded-xl transition-all">Add Goal (+50 XP)</button>
-        </div>
-      </form>
-    </div>
-  </div>
 
   <script>
     const defaultData = {
       sem1: [
         { id: 's1_1', title: 'Master C Syntax, Control Structures & Loops', xp: 40 },
         { id: 's1_2', title: 'Pointers, Dynamic Memory Allocation (malloc/free)', xp: 50 },
-        { id: 's1_3', title: 'Linux CLI Terminal & Git/GitHub Version Control', xp: 40 },
+        { id: 's1_3', title: 'Linux CLI Terminal & Git/GitHub Workflow', xp: 40 },
         { id: 's1_4', title: 'Calculus, Linear Algebra & Digital Logic', xp: 30 }
       ],
       sem2: [
-        { id: 's2_1', title: 'OOPs Concepts in C++ or Java (Classes, Inheritance)', xp: 50 },
-        { id: 's2_2', title: 'Arrays, Strings, Recursion & Basic Searching', xp: 40 },
-        { id: 's2_3', title: 'Discrete Mathematics & Graph Theory Foundations', xp: 40 }
+        { id: 's2_1', title: 'OOPs Concepts in C++ or Java (Class, Inheritance)', xp: 50 },
+        { id: 's2_2', title: 'Arrays, Strings, Recursion & Searching Algorithms', xp: 40 },
+        { id: 's2_3', title: 'Discrete Mathematics (Logic, Graph Theory)', xp: 40 }
       ],
       sem3: [
         { id: 's3_1', title: 'Linked Lists, Stacks, Queues & Binary Trees', xp: 60 },
-        { id: 's3_2', title: 'Relational Databases (DBMS) & Complex SQL Queries', xp: 50 },
-        { id: 's3_3', title: 'Solve 100+ Problems on LeetCode/CodeStudio', xp: 70 }
+        { id: 's3_2', title: 'Relational DBMS & Complex SQL Queries', xp: 50 },
+        { id: 's3_3', title: 'Solve 100+ LeetCode Problems', xp: 70 }
       ],
       sem4: [
-        { id: 's4_1', title: 'Graphs, Dynamic Programming & Greedy Algorithms', xp: 80 },
+        { id: 's4_1', title: 'Graphs, Dynamic Programming & Greedy Logic', xp: 80 },
         { id: 's4_2', title: 'Operating Systems (Threads, Deadlocks, Memory)', xp: 60 },
         { id: 's4_3', title: 'Computer Networks (TCP/IP, Sockets, HTTP/HTTPS)', xp: 60 }
       ],
       sem5: [
-        { id: 's5_1', title: 'Tech Specialization: Full-Stack (MERN) or Data Science/AI', xp: 80 },
-        { id: 's5_2', title: 'Participate in Hackathons (e.g. Smart India Hackathon)', xp: 90 },
+        { id: 's5_1', title: 'Tech Specialization: Full-Stack (MERN) or AI', xp: 80 },
+        { id: 's5_2', title: 'Participate in Hackathons (Smart India Hackathon)', xp: 90 },
         { id: 's5_3', title: 'Open Source GitHub Contributions', xp: 70 }
       ],
       sem6: [
-        { id: 's6_1', title: 'Master Low Level Design (LLD) & SOLID Principles', xp: 80 },
-        { id: 's6_2', title: 'Build Full-Stack Capstone SaaS Application', xp: 100 },
-        { id: 's6_3', title: 'Apply and Secure Summer Tech Internship', xp: 150 }
+        { id: 's6_1', title: 'Low Level Design (LLD) & SOLID Principles', xp: 80 },
+        { id: 's6_2', title: 'Build Full-Stack SaaS Application', xp: 100 },
+        { id: 's6_3', title: 'Apply and Secure Summer Internship', xp: 150 }
       ],
       sem7: [
-        { id: 's7_1', title: 'Top 100 DSA Revision (Striver SDE Sheet / Blind 75)', xp: 100 },
+        { id: 's7_1', title: 'Top 100 DSA Revision (Striver Sheet / Blind 75)', xp: 100 },
         { id: 's7_2', title: 'High Level System Design (HLD): Caching, Load Balancers', xp: 90 },
-        { id: 's7_3', title: 'Mock Technical & HR Interview Practice', xp: 80 }
+        { id: 's7_3', title: 'Mock Technical & HR Interview Prep', xp: 80 }
       ],
       sem8: [
         { id: 's8_1', title: 'Major Final Year College Capstone Project', xp: 120 },
         { id: 's8_2', title: 'Cloud Deployment (AWS/Vercel) & CI/CD Pipelines', xp: 90 },
-        { id: 's8_3', title: 'Graduate B.Tech CST & Finalize Placement Offers', xp: 200 }
+        { id: 's8_3', title: 'Graduate B.Tech CST & Finalize Offers', xp: 200 }
       ]
     };
 
     const badges = [
-      { id: 'b_c', name: 'C/C++ Veteran', desc: 'Completed Year 1 Fundamentals', icon: 'fa-code' },
-      { id: 'b_dsa', name: 'DSA Specialist', desc: 'Mastered Trees, Graphs & DP', icon: 'fa-brain' },
-      { id: 'b_full', name: 'Full-Stack Craftsman', desc: 'Built production web apps', icon: 'fa-layer-group' },
-      { id: 'b_sys', name: 'System Designer', desc: 'Mastered LLD & HLD patterns', icon: 'fa-sitemap' },
-      { id: 'b_intern', name: 'Internship Secured', desc: 'Cleared internship drive', icon: 'fa-briefcase' },
-      { id: 'b_titan', name: 'CS Maestro', desc: 'Reached Level 5+ in CyberQuest', icon: 'fa-crown' }
+      { id: 'b_c', name: 'C/C++ Veteran', desc: 'Completed Year 1', icon: 'fa-code' },
+      { id: 'b_dsa', name: 'DSA Specialist', desc: 'Mastered Trees & DP', icon: 'fa-brain' },
+      { id: 'b_full', name: 'Full-Stack Craftsman', desc: 'Built Production Apps', icon: 'fa-layer-group' },
+      { id: 'b_sys', name: 'System Designer', desc: 'Mastered LLD & HLD', icon: 'fa-sitemap' },
+      { id: 'b_intern', name: 'Internship Secured', desc: 'Cleared Drive', icon: 'fa-briefcase' },
+      { id: 'b_titan', name: 'CS Maestro', desc: 'Reached Level 5+', icon: 'fa-crown' }
     ];
 
-    const projects = [
-      { title: 'CLI Banking Engine', sem: 'Year 1', desc: 'File-backed console banking system in C/C++ with user authentication.', tech: ['C++', 'File I/O'] },
-      { title: 'Concurrent Web Server', sem: 'Year 2', desc: 'Multi-threaded socket HTTP web server built from scratch.', tech: ['C++', 'Sockets', 'POSIX Threads'] },
-      { title: 'Full-Stack SaaS Platform', sem: 'Year 3', desc: 'Complete Web App with JWT auth, payment gateway, and dynamic backend API.', tech: ['React', 'Node.js', 'MongoDB'] },
-      { title: 'Collaborative Code Editor', sem: 'Year 3', desc: 'Real-time multi-user code editor with live WebSockets syncing.', tech: ['WebSockets', 'React', 'Monaco'] },
-      { title: 'Distributed Cache System', sem: 'Year 4', desc: 'In-memory Key-Value cache store with LRU eviction policy.', tech: ['System Design', 'Redis', 'Node.js'] },
-      { title: 'Major Capstone App', sem: 'Year 4', desc: 'Deployed full-scale web product on AWS with Docker and CI/CD.', tech: ['Docker', 'AWS', 'MERN'] }
-    ];
-
-    let tasks = JSON.parse(localStorage.getItem('cq_tasks')) || defaultData;
+    let tasks = defaultData;
     let completed = JSON.parse(localStorage.getItem('cq_completed')) || {};
 
     function init() {
       renderSemesters();
       renderBadges();
-      renderProjects();
       updateStats();
     }
 
@@ -474,12 +398,12 @@
       document.querySelectorAll('.tab-panel').forEach(el => el.classList.add('hidden'));
       document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.classList.remove('bg-purple-600', 'text-white', 'shadow-lg');
-        btn.classList.add('bg-[#0b1120]', 'text-slate-400');
+        btn.classList.add('bg-[#0d1322]', 'text-slate-400');
       });
 
       document.getElementById(`content-${tabId}`).classList.remove('hidden');
       const activeBtn = document.getElementById(`tab-${tabId}`);
-      activeBtn.classList.remove('bg-[#0b1120]', 'text-slate-400');
+      activeBtn.classList.remove('bg-[#0d1322]', 'text-slate-400');
       activeBtn.classList.add('bg-purple-600', 'text-white', 'shadow-lg');
     }
 
@@ -494,7 +418,7 @@
           const isDone = !!completed[t.id];
           const li = document.createElement('li');
           li.className = `flex items-center justify-between p-3 rounded-xl border transition-all ${
-            isDone ? 'bg-purple-500/10 border-purple-500/30' : 'bg-slate-900/60 border-slate-800 hover:border-slate-700'
+            isDone ? 'bg-purple-500/10 border-purple-500/30' : 'bg-slate-900/60 border-slate-800'
           }`;
           li.innerHTML = `
             <div class="flex items-center gap-3">
@@ -504,7 +428,6 @@
                 <span class="block text-[10px] font-mono text-purple-400">+${t.xp} XP</span>
               </div>
             </div>
-            ${t.custom ? `<button onclick="deleteQuest('${key}', '${t.id}')" class="text-slate-600 hover:text-red-400 text-xs"><i class="fa-solid fa-trash"></i></button>` : ''}
           `;
           container.appendChild(li);
         });
@@ -513,7 +436,7 @@
 
     function toggleTask(id) {
       completed[id] = !completed[id];
-      if (completed[id]) confetti({ particleCount: 25, spread: 50, origin: { y: 0.8 } });
+      if (completed[id]) confetti({ particleCount: 20, spread: 40, origin: { y: 0.8 } });
       localStorage.setItem('cq_completed', JSON.stringify(completed));
       renderSemesters();
       updateStats();
@@ -568,9 +491,9 @@
         if (isUnlocked) unlockedCount++;
 
         const div = document.createElement('div');
-        div.className = `glass-card rounded-xl p-3 text-center space-y-2 ${isUnlocked ? 'border-purple-500/40 bg-purple-500/10' : 'opacity-40 grayscale'}`;
+        div.className = `glass-inner rounded-xl p-3 text-center space-y-2 ${isUnlocked ? 'border-purple-500/40 bg-purple-500/10' : 'opacity-40 grayscale'}`;
         div.innerHTML = `
-          <div class="w-9 h-9 mx-auto rounded-lg bg-slate-900 flex items-center justify-center text-purple-400 text-sm">
+          <div class="w-8 h-8 mx-auto rounded-lg bg-slate-900 flex items-center justify-center text-purple-400 text-xs">
             <i class="fa-solid ${b.icon}"></i>
           </div>
           <div>
@@ -582,63 +505,6 @@
       });
 
       document.getElementById('statBadges').textContent = unlockedCount;
-    }
-
-    function renderProjects() {
-      const container = document.getElementById('projectsGrid');
-      container.innerHTML = '';
-      projects.forEach(p => {
-        const div = document.createElement('div');
-        div.className = 'glass-panel rounded-2xl p-5 flex flex-col justify-between space-y-3';
-        div.innerHTML = `
-          <div>
-            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 border border-purple-500/30">${p.sem}</span>
-            <h4 class="text-sm font-bold text-white mt-2">${p.title}</h4>
-            <p class="text-xs text-slate-400 mt-1">${p.desc}</p>
-          </div>
-          <div class="flex flex-wrap gap-1">
-            ${p.tech.map(t => `<span class="text-[9px] font-mono px-2 py-0.5 bg-slate-900 border border-slate-800 text-slate-300 rounded">${t}</span>`).join('')}
-          </div>
-        `;
-        container.appendChild(div);
-      });
-    }
-
-    function openGoalModal() { document.getElementById('goalModal').classList.remove('hidden'); }
-    function closeGoalModal() { document.getElementById('goalModal').classList.add('hidden'); }
-
-    function addCustomQuest(e) {
-      e.preventDefault();
-      const sem = document.getElementById('goalSem').value;
-      const title = document.getElementById('goalTitle').value.trim();
-      if (!title) return;
-
-      const newId = 'custom_' + Date.now();
-      tasks[sem].push({ id: newId, title: title, xp: 50, custom: true });
-      localStorage.setItem('cq_tasks', JSON.stringify(tasks));
-      closeGoalModal();
-      document.getElementById('goalTitle').value = '';
-      renderSemesters();
-      updateStats();
-    }
-
-    function deleteQuest(sem, id) {
-      tasks[sem] = tasks[sem].filter(t => t.id !== id);
-      delete completed[id];
-      localStorage.setItem('cq_tasks', JSON.stringify(tasks));
-      localStorage.setItem('cq_completed', JSON.stringify(completed));
-      renderSemesters();
-      updateStats();
-    }
-
-    function resetData() {
-      if (confirm('Reset all completed quests and custom goals?')) {
-        localStorage.removeItem('cq_tasks');
-        localStorage.removeItem('cq_completed');
-        tasks = JSON.parse(JSON.stringify(defaultData));
-        completed = {};
-        init();
-      }
     }
 
     window.addEventListener('DOMContentLoaded', init);
