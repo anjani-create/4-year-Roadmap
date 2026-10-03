@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CST CyberQuest - 4-Year B.Tech College Roadmap</title>
+  <title>CST CyberQuest v2.4 - B.Tech CST Gamified Career Engine</title>
   
-  <!-- Tailwind CSS & FontAwesome -->
+  <!-- Tailwind CSS & FontAwesome & Confetti -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -41,15 +41,16 @@
     
     .bg-cyber-grid {
       background-image: 
-        radial-gradient(circle at 10% 10%, rgba(168, 85, 247, 0.12) 0%, transparent 40%),
-        radial-gradient(circle at 90% 90%, rgba(6, 182, 212, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 10% 10%, rgba(168, 85, 247, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 90% 90%, rgba(6, 182, 212, 0.12) 0%, transparent 40%),
         radial-gradient(circle at 50% 50%, #0d1322 0%, #05070e 100%);
     }
 
     .glass-card {
-      background: rgba(13, 19, 34, 0.8) !important;
-      backdrop-filter: blur(12px);
+      background: rgba(13, 19, 34, 0.85) !important;
+      backdrop-filter: blur(14px);
       border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     }
 
     .glass-inner {
@@ -57,43 +58,52 @@
       border: 1px solid rgba(255, 255, 255, 0.05);
     }
 
-    /* Checkbox styling */
+    /* Custom Checkbox styling */
     .custom-chk {
       appearance: none;
-      width: 18px;
-      height: 18px;
+      width: 20px;
+      height: 20px;
       border: 2px solid #334155;
-      border-radius: 5px;
+      border-radius: 6px;
       background: #0f172a;
       cursor: pointer;
       position: relative;
       transition: all 0.2s ease;
+      flex-shrink: 0;
     }
     .custom-chk:checked {
       background-color: #a855f7;
       border-color: #c084fc;
-      box-shadow: 0 0 10px rgba(168, 85, 247, 0.6);
+      box-shadow: 0 0 12px rgba(168, 85, 247, 0.7);
     }
     .custom-chk:checked::after {
       content: '✓';
       position: absolute;
       color: white;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 800;
       top: -3px;
-      left: 2px;
+      left: 3px;
+    }
+
+    /* Hide scrollbars for navigation tabs */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
   </style>
 </head>
 <body class="bg-cyber-grid min-h-screen text-slate-100 antialiased pb-20">
 
-  <!-- HUD NAVIGATION -->
   <header class="sticky top-0 z-50 bg-[#05070e]/90 backdrop-blur-md border-b border-slate-800/80">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-4">
       
-      <!-- Logo -->
+      <!-- Brand Logo -->
       <div class="flex items-center space-x-3">
-        <div class="w-10 h-10 rounded-xl bg-purple-600/20 border border-purple-500/40 flex items-center justify-center text-purple-400 font-bold">
+        <div class="w-10 h-10 rounded-xl bg-purple-600/20 border border-purple-500/40 flex items-center justify-center text-purple-400 font-bold shadow-lg shadow-purple-500/10">
           <i class="fa-solid fa-terminal text-sm"></i>
         </div>
         <div>
@@ -105,9 +115,10 @@
         </div>
       </div>
 
-      <!-- Player HUD -->
-      <div class="flex items-center gap-3 sm:gap-6">
-        <div class="flex items-center gap-2.5 bg-[#0d1322] border border-slate-800 px-3.5 py-1.5 rounded-xl">
+      <!-- Player HUD Metrics -->
+      <div class="flex items-center flex-wrap gap-2 sm:gap-4">
+        <!-- Rank Badge -->
+        <div class="flex items-center gap-2.5 bg-[#0d1322] border border-slate-800 px-3 py-1.5 rounded-xl">
           <i class="fa-solid fa-user-astronaut text-purple-400 text-xs"></i>
           <div>
             <div class="text-[9px] uppercase font-mono text-slate-400 font-bold">Rank</div>
@@ -115,15 +126,17 @@
           </div>
         </div>
 
-        <div class="flex items-center gap-2 bg-[#0d1322] border border-slate-800 px-3.5 py-1.5 rounded-xl">
-          <i class="fa-solid fa-fire text-amber-500 text-sm"></i>
+        <!-- Streak Badge -->
+        <div class="flex items-center gap-2 bg-[#0d1322] border border-slate-800 px-3 py-1.5 rounded-xl">
+          <i class="fa-solid fa-fire text-amber-500 text-sm animate-pulse"></i>
           <div>
             <div class="text-[9px] uppercase font-mono text-slate-400 font-bold">Streak</div>
             <div class="text-xs font-bold text-amber-400 font-mono"><span id="streakDays">1</span> Day</div>
           </div>
         </div>
 
-        <div class="hidden sm:flex flex-col min-w-[140px]">
+        <!-- Level & XP HUD Bar -->
+        <div class="hidden md:flex flex-col min-w-[140px] bg-[#0d1322] border border-slate-800 px-3 py-1.5 rounded-xl">
           <div class="flex justify-between text-[10px] font-mono mb-1 text-slate-300">
             <span>LVL <span id="levelNum">1</span></span>
             <span><span id="currentXp">0</span> / <span id="nextLvlXp">400</span> XP</span>
@@ -132,38 +145,49 @@
             <div id="xpBar" class="h-full bg-gradient-to-r from-purple-500 to-cyan-400 rounded-full transition-all duration-300" style="width: 0%"></div>
           </div>
         </div>
+
+        <!-- Control Buttons -->
+        <button onclick="toggleSound()" id="soundBtn" title="Toggle Audio Feedback" class="w-8 h-8 rounded-xl bg-[#0d1322] border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white transition-colors">
+          <i class="fa-solid fa-volume-high text-xs"></i>
+        </button>
+        <button onclick="resetProgress()" title="Reset All Quest Progress" class="w-8 h-8 rounded-xl bg-[#0d1322] border border-slate-800 flex items-center justify-center text-rose-400 hover:bg-rose-500/10 transition-colors">
+          <i class="fa-solid fa-rotate-right text-xs"></i>
+        </button>
       </div>
+
     </div>
   </header>
 
-  <!-- MAIN SECTION -->
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
 
-    <!-- TAB BUTTONS -->
+    <!-- Navigation Tabs -->
     <div class="flex items-center gap-2 overflow-x-auto pb-3 mb-6 no-scrollbar border-b border-slate-800/60">
-      <button onclick="switchTab('overview')" id="tab-overview" class="tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-purple-600 text-white shadow-lg shadow-purple-600/30 flex items-center gap-2">
+      <button onclick="switchTab('overview')" id="tab-overview" class="tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-purple-600 text-white shadow-lg shadow-purple-600/30 flex items-center gap-2 transition-all">
         <i class="fa-solid fa-grip"></i> Command Center
       </button>
-      <button onclick="switchTab('y1')" id="tab-y1" class="tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-[#0d1322] text-slate-400 border border-slate-800 hover:text-white flex items-center gap-2">
+      <button onclick="switchTab('y1')" id="tab-y1" class="tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-[#0d1322] text-slate-400 border border-slate-800 hover:text-white flex items-center gap-2 transition-all">
         <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Y1 Year 1: Fundamentals
       </button>
-      <button onclick="switchTab('y2')" id="tab-y2" class="tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-[#0d1322] text-slate-400 border border-slate-800 hover:text-white flex items-center gap-2">
+      <button onclick="switchTab('y2')" id="tab-y2" class="tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-[#0d1322] text-slate-400 border border-slate-800 hover:text-white flex items-center gap-2 transition-all">
         <span class="w-2 h-2 rounded-full bg-cyan-400"></span> Y2 Year 2: Programming Mastery
       </button>
-      <button onclick="switchTab('y3')" id="tab-y3" class="tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-[#0d1322] text-slate-400 border border-slate-800 hover:text-white flex items-center gap-2">
+      <button onclick="switchTab('y3')" id="tab-y3" class="tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-[#0d1322] text-slate-400 border border-slate-800 hover:text-white flex items-center gap-2 transition-all">
         <span class="w-2 h-2 rounded-full bg-purple-400"></span> Y3 Year 3: Projects & Internships
       </button>
-      <button onclick="switchTab('y4')" id="tab-y4" class="tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-[#0d1322] text-slate-400 border border-slate-800 hover:text-white flex items-center gap-2">
+      <button onclick="switchTab('y4')" id="tab-y4" class="tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-[#0d1322] text-slate-400 border border-slate-800 hover:text-white flex items-center gap-2 transition-all">
         <span class="w-2 h-2 rounded-full bg-rose-400"></span> Y4 Year 4: Job Readiness
+      </button>
+      <button onclick="switchTab('blueprints')" id="tab-blueprints" class="tab-btn px-4 py-2.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-[#0d1322] text-slate-400 border border-slate-800 hover:text-white flex items-center gap-2 transition-all">
+        <i class="fa-solid fa-cubes text-amber-400"></i> Project Blueprints
       </button>
     </div>
 
-    <!-- COMMAND CENTER TAB -->
     <div id="content-overview" class="tab-panel space-y-6">
       
-      <!-- HERO CARD -->
+      <!-- Hero Header & Stats Banner -->
       <div class="glass-card rounded-3xl p-6 sm:p-8 relative overflow-hidden">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
           <div class="lg:col-span-8 space-y-4">
             <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-mono">
               <i class="fa-solid fa-graduation-cap"></i> B.TECH COMPUTER SCIENCE & TECHNOLOGY (CST) ROADMAP
@@ -178,17 +202,20 @@
               <button onclick="switchTab('y1')" class="px-6 py-3 bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs rounded-xl shadow-lg shadow-purple-600/30 transition-all flex items-center gap-2">
                 START YEAR 1 MISSIONS <i class="fa-solid fa-arrow-right"></i>
               </button>
+              <button onclick="openCustomQuestModal()" class="px-5 py-3 bg-[#121828] hover:bg-slate-800 text-slate-200 font-bold text-xs rounded-xl border border-slate-700 transition-all flex items-center gap-2">
+                <i class="fa-solid fa-plus text-purple-400"></i> ADD CUSTOM QUEST
+              </button>
             </div>
           </div>
 
-          <!-- PLAYER STAT CARD -->
+          <!-- Player Profile Summary Card -->
           <div class="lg:col-span-4 bg-[#0a0d18] border border-slate-800 rounded-2xl p-6 flex flex-col items-center text-center space-y-3">
-            <div class="w-16 h-16 rounded-2xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 text-2xl">
+            <div class="w-16 h-16 rounded-2xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 text-2xl shadow-inner">
               <i class="fa-solid fa-user-astronaut"></i>
             </div>
             <div>
               <h3 id="heroRank" class="text-lg font-bold text-white">Freshman Recruit</h3>
-              <p class="text-xs text-slate-400 font-mono">Level 1 Engineer</p>
+              <p class="text-xs text-slate-400 font-mono">Level <span id="heroLevel">1</span> Engineer</p>
             </div>
             <div class="w-full pt-2">
               <div class="flex justify-between text-[11px] font-mono text-slate-400 mb-1">
@@ -200,10 +227,11 @@
               </div>
             </div>
           </div>
+
         </div>
       </div>
 
-      <!-- STAT METRICS -->
+      <!-- Quick Stats Grid -->
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <div class="glass-card rounded-2xl p-4 flex items-center gap-4">
           <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 text-lg">
@@ -246,13 +274,21 @@
         </div>
       </div>
 
-      <!-- BADGES GRID -->
+      <!-- Achievement Badges -->
       <div class="glass-card rounded-2xl p-6">
-        <h3 class="text-base font-bold text-white mb-2 flex items-center gap-2">
+        <h3 class="text-base font-bold text-white mb-1 flex items-center gap-2">
           <i class="fa-solid fa-award text-amber-400"></i> Career Achievement Badges
         </h3>
-        <p class="text-xs text-slate-400 mb-4">Unlock these milestones as you complete specific years and targets.</p>
+        <p class="text-xs text-slate-400 mb-4">Unlock these milestone honors as you advance through the CST questline.</p>
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3" id="badgesContainer"></div>
+      </div>
+
+      <!-- Custom Quests Container -->
+      <div id="customQuestSection" class="glass-card rounded-2xl p-6 hidden">
+        <h3 class="text-base font-bold text-white mb-3 flex items-center gap-2">
+          <i class="fa-solid fa-bullseye text-cyan-400"></i> Your Custom Objectives
+        </h3>
+        <ul id="list-custom" class="grid grid-cols-1 md:grid-cols-2 gap-3"></ul>
       </div>
 
     </div>
@@ -265,11 +301,17 @@
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div class="glass-card rounded-2xl p-5 space-y-4">
-          <h4 class="font-bold text-purple-400 border-b border-slate-800 pb-2">Semester 1: C Programming & Tools</h4>
+          <h4 class="font-bold text-purple-400 border-b border-slate-800 pb-2 flex justify-between items-center">
+            <span>Semester 1: C Programming & Tools</span>
+            <span class="text-[10px] font-mono text-slate-400">Sem 1</span>
+          </h4>
           <ul id="list-sem1" class="space-y-3"></ul>
         </div>
         <div class="glass-card rounded-2xl p-5 space-y-4">
-          <h4 class="font-bold text-cyan-400 border-b border-slate-800 pb-2">Semester 2: OOPs & Discrete Math</h4>
+          <h4 class="font-bold text-cyan-400 border-b border-slate-800 pb-2 flex justify-between items-center">
+            <span>Semester 2: OOPs & Discrete Math</span>
+            <span class="text-[10px] font-mono text-slate-400">Sem 2</span>
+          </h4>
           <ul id="list-sem2" class="space-y-3"></ul>
         </div>
       </div>
@@ -283,11 +325,17 @@
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div class="glass-card rounded-2xl p-5 space-y-4">
-          <h4 class="font-bold text-purple-400 border-b border-slate-800 pb-2">Semester 3: DSA & Database Systems</h4>
+          <h4 class="font-bold text-purple-400 border-b border-slate-800 pb-2 flex justify-between items-center">
+            <span>Semester 3: DSA & Database Systems</span>
+            <span class="text-[10px] font-mono text-slate-400">Sem 3</span>
+          </h4>
           <ul id="list-sem3" class="space-y-3"></ul>
         </div>
         <div class="glass-card rounded-2xl p-5 space-y-4">
-          <h4 class="font-bold text-cyan-400 border-b border-slate-800 pb-2">Semester 4: Advanced DSA, OS & Networks</h4>
+          <h4 class="font-bold text-cyan-400 border-b border-slate-800 pb-2 flex justify-between items-center">
+            <span>Semester 4: Advanced DSA, OS & Networks</span>
+            <span class="text-[10px] font-mono text-slate-400">Sem 4</span>
+          </h4>
           <ul id="list-sem4" class="space-y-3"></ul>
         </div>
       </div>
@@ -301,11 +349,17 @@
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div class="glass-card rounded-2xl p-5 space-y-4">
-          <h4 class="font-bold text-purple-400 border-b border-slate-800 pb-2">Semester 5: Specialization & Hackathons</h4>
+          <h4 class="font-bold text-purple-400 border-b border-slate-800 pb-2 flex justify-between items-center">
+            <span>Semester 5: Specialization & Hackathons</span>
+            <span class="text-[10px] font-mono text-slate-400">Sem 5</span>
+          </h4>
           <ul id="list-sem5" class="space-y-3"></ul>
         </div>
         <div class="glass-card rounded-2xl p-5 space-y-4">
-          <h4 class="font-bold text-emerald-400 border-b border-slate-800 pb-2">Semester 6: Low Level Design & Internships</h4>
+          <h4 class="font-bold text-emerald-400 border-b border-slate-800 pb-2 flex justify-between items-center">
+            <span>Semester 6: Low Level Design & Internships</span>
+            <span class="text-[10px] font-mono text-slate-400">Sem 6</span>
+          </h4>
           <ul id="list-sem6" class="space-y-3"></ul>
         </div>
       </div>
@@ -319,19 +373,97 @@
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div class="glass-card rounded-2xl p-5 space-y-4">
-          <h4 class="font-bold text-amber-400 border-b border-slate-800 pb-2">Semester 7: Placement Sprints & HLD</h4>
+          <h4 class="font-bold text-amber-400 border-b border-slate-800 pb-2 flex justify-between items-center">
+            <span>Semester 7: Placement Sprints & HLD</span>
+            <span class="text-[10px] font-mono text-slate-400">Sem 7</span>
+          </h4>
           <ul id="list-sem7" class="space-y-3"></ul>
         </div>
         <div class="glass-card rounded-2xl p-5 space-y-4">
-          <h4 class="font-bold text-rose-400 border-b border-slate-800 pb-2">Semester 8: Major Capstone & Offboarding</h4>
+          <h4 class="font-bold text-rose-400 border-b border-slate-800 pb-2 flex justify-between items-center">
+            <span>Semester 8: Major Capstone & Offboarding</span>
+            <span class="text-[10px] font-mono text-slate-400">Sem 8</span>
+          </h4>
           <ul id="list-sem8" class="space-y-3"></ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLUEPRINTS TAB -->
+    <div id="content-blueprints" class="tab-panel space-y-6 hidden">
+      <div class="glass-card rounded-2xl p-6 border-l-4 border-l-amber-500">
+        <h3 class="text-xl font-bold text-white">Industry Portfolio Blueprints</h3>
+        <p class="text-xs text-slate-400 mt-1">Key software projects to stand out in technical engineering interviews.</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="glass-card rounded-2xl p-5 space-y-3">
+          <div class="text-xs font-mono text-cyan-400 uppercase font-bold">Level 1 Blueprint</div>
+          <h4 class="text-lg font-bold text-white">Real-Time Chat & Collaboration Engine</h4>
+          <p class="text-xs text-slate-400">Build a WebSocket-powered chat app with WebRTC video calling, room channels, and JWT authentication.</p>
+          <div class="pt-2 flex flex-wrap gap-1.5">
+            <span class="px-2 py-0.5 rounded bg-slate-800 text-[10px] font-mono text-slate-300">Node.js</span>
+            <span class="px-2 py-0.5 rounded bg-slate-800 text-[10px] font-mono text-slate-300">Socket.io</span>
+            <span class="px-2 py-0.5 rounded bg-slate-800 text-[10px] font-mono text-slate-300">React</span>
+          </div>
+        </div>
+
+        <div class="glass-card rounded-2xl p-5 space-y-3">
+          <div class="text-xs font-mono text-purple-400 uppercase font-bold">Level 2 Blueprint</div>
+          <h4 class="text-lg font-bold text-white">Distributed Rate Limiter & API Gateway</h4>
+          <p class="text-xs text-slate-400">Implement token bucket and sliding log algorithms backed by Redis cluster for microservices protection.</p>
+          <div class="pt-2 flex flex-wrap gap-1.5">
+            <span class="px-2 py-0.5 rounded bg-slate-800 text-[10px] font-mono text-slate-300">Go / Java</span>
+            <span class="px-2 py-0.5 rounded bg-slate-800 text-[10px] font-mono text-slate-300">Redis</span>
+            <span class="px-2 py-0.5 rounded bg-slate-800 text-[10px] font-mono text-slate-300">Docker</span>
+          </div>
+        </div>
+
+        <div class="glass-card rounded-2xl p-5 space-y-3">
+          <div class="text-xs font-mono text-rose-400 uppercase font-bold">Level 3 Blueprint</div>
+          <h4 class="text-lg font-bold text-white">AI-Powered Code Reviewer & Assistant</h4>
+          <p class="text-xs text-slate-400">RAG-driven application integrated with LLM APIs to scan pull requests for security flaws and performance bottlenecks.</p>
+          <div class="pt-2 flex flex-wrap gap-1.5">
+            <span class="px-2 py-0.5 rounded bg-slate-800 text-[10px] font-mono text-slate-300">Python</span>
+            <span class="px-2 py-0.5 rounded bg-slate-800 text-[10px] font-mono text-slate-300">LangChain</span>
+            <span class="px-2 py-0.5 rounded bg-slate-800 text-[10px] font-mono text-slate-300">VectorDB</span>
+          </div>
         </div>
       </div>
     </div>
 
   </main>
 
+  <!-- Custom Quest Input Modal -->
+  <div id="questModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="glass-card rounded-2xl max-w-md w-full p-6 space-y-4 border border-purple-500/30">
+      <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+        <h3 class="text-base font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-plus-circle text-purple-400"></i> Add Custom Quest
+        </h3>
+        <button onclick="closeCustomQuestModal()" class="text-slate-400 hover:text-white">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="space-y-3">
+        <div>
+          <label class="block text-xs font-mono text-slate-300 mb-1">Quest Title</label>
+          <input type="text" id="questInputTitle" placeholder="e.g., Read 5 chapters of OS book" class="w-full bg-[#05070e] border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-purple-500">
+        </div>
+        <div>
+          <label class="block text-xs font-mono text-slate-300 mb-1">XP Reward</label>
+          <input type="number" id="questInputXp" value="50" min="10" max="200" class="w-full bg-[#05070e] border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-purple-500">
+        </div>
+      </div>
+      <div class="pt-2 flex gap-2">
+        <button onclick="saveCustomQuest()" class="w-full py-2.5 bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold rounded-xl transition-all">Create Quest</button>
+        <button onclick="closeCustomQuestModal()" class="w-full py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl transition-all">Cancel</button>
+      </div>
+    </div>
+  </div>
+
   <script>
+    // Default semester roadmap curriculum data
     const defaultData = {
       sem1: [
         { id: 's1_1', title: 'Master C Syntax, Control Structures & Loops', xp: 40 },
@@ -387,14 +519,46 @@
 
     let tasks = defaultData;
     let completed = JSON.parse(localStorage.getItem('cq_completed')) || {};
+    let customQuests = JSON.parse(localStorage.getItem('cq_custom_quests')) || [];
+    let soundEnabled = JSON.parse(localStorage.getItem('cq_sound')) !== false;
+
+    // Web Audio Synthesizer for feedback effects
+    function playBeep(freq = 600, duration = 0.1) {
+      if (!soundEnabled) return;
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        const ctx = new AudioCtx();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.05, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + duration);
+      } catch (e) {
+        // Handle muted audio contexts
+      }
+    }
+
+    function toggleSound() {
+      soundEnabled = !soundEnabled;
+      localStorage.setItem('cq_sound', soundEnabled);
+      const btn = document.getElementById('soundBtn');
+      btn.innerHTML = soundEnabled ? '<i class="fa-solid fa-volume-high text-xs"></i>' : '<i class="fa-solid fa-volume-xmark text-xs text-slate-500"></i>';
+    }
 
     function init() {
       renderSemesters();
+      renderCustomQuests();
       renderBadges();
       updateStats();
     }
 
     function switchTab(tabId) {
+      playBeep(450, 0.05);
       document.querySelectorAll('.tab-panel').forEach(el => el.classList.add('hidden'));
       document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.classList.remove('bg-purple-600', 'text-white', 'shadow-lg');
@@ -418,7 +582,7 @@
           const isDone = !!completed[t.id];
           const li = document.createElement('li');
           li.className = `flex items-center justify-between p-3 rounded-xl border transition-all ${
-            isDone ? 'bg-purple-500/10 border-purple-500/30' : 'bg-slate-900/60 border-slate-800'
+            isDone ? 'bg-purple-500/10 border-purple-500/30' : 'bg-slate-900/60 border-slate-800 hover:border-slate-700'
           }`;
           li.innerHTML = `
             <div class="flex items-center gap-3">
@@ -434,16 +598,58 @@
       }
     }
 
+    function renderCustomQuests() {
+      const sec = document.getElementById('customQuestSection');
+      const container = document.getElementById('list-custom');
+      
+      if (customQuests.length === 0) {
+        sec.classList.add('hidden');
+        return;
+      }
+
+      sec.classList.remove('hidden');
+      container.innerHTML = '';
+
+      customQuests.forEach(q => {
+        const isDone = !!completed[q.id];
+        const li = document.createElement('li');
+        li.className = `flex items-center justify-between p-3 rounded-xl border ${
+          isDone ? 'bg-purple-500/10 border-purple-500/30' : 'bg-slate-900/60 border-slate-800'
+        }`;
+        li.innerHTML = `
+          <div class="flex items-center gap-3">
+            <input type="checkbox" ${isDone ? 'checked' : ''} onchange="toggleTask('${q.id}')" class="custom-chk">
+            <div>
+              <span class="text-xs font-medium ${isDone ? 'line-through text-slate-500' : 'text-slate-200'}">${q.title}</span>
+              <span class="block text-[10px] font-mono text-cyan-400">+${q.xp} XP</span>
+            </div>
+          </div>
+          <button onclick="removeCustomQuest('${q.id}')" class="text-slate-600 hover:text-rose-400 text-xs">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        `;
+        container.appendChild(li);
+      });
+    }
+
     function toggleTask(id) {
       completed[id] = !completed[id];
-      if (completed[id]) confetti({ particleCount: 20, spread: 40, origin: { y: 0.8 } });
+      if (completed[id]) {
+        playBeep(800, 0.15);
+        confetti({ particleCount: 30, spread: 50, origin: { y: 0.8 } });
+      } else {
+        playBeep(300, 0.1);
+      }
       localStorage.setItem('cq_completed', JSON.stringify(completed));
       renderSemesters();
+      renderCustomQuests();
       updateStats();
     }
 
     function updateStats() {
       let total = 0, done = 0, xp = 0;
+
+      // Semester tasks calculations
       Object.keys(tasks).forEach(k => {
         tasks[k].forEach(t => {
           total++;
@@ -454,6 +660,15 @@
         });
       });
 
+      // Custom quests calculations
+      customQuests.forEach(q => {
+        total++;
+        if (completed[q.id]) {
+          done++;
+          xp += q.xp;
+        }
+      });
+
       const lvl = Math.floor(xp / 400) + 1;
       const nextXp = lvl * 400;
       const xpPercent = Math.min(100, Math.round(((xp % 400) / 400) * 100));
@@ -462,17 +677,21 @@
       const ranks = ['Freshman Recruit', 'C++ Veteran', 'DSA Specialist', 'Full-Stack Craftsman', 'System Architect', 'CS Maestro'];
       const rank = ranks[Math.min(lvl - 1, ranks.length - 1)];
 
+      // Navbar DOM updates
       document.getElementById('rankTitle').textContent = rank;
       document.getElementById('levelNum').textContent = lvl;
       document.getElementById('currentXp').textContent = xp;
       document.getElementById('nextLvlXp').textContent = nextXp;
       document.getElementById('xpBar').style.width = `${xpPercent}%`;
 
+      // Hero Card DOM updates
       document.getElementById('heroRank').textContent = rank;
+      document.getElementById('heroLevel').textContent = lvl;
       document.getElementById('heroXp').textContent = xp;
       document.getElementById('heroNextXp').textContent = nextXp;
       document.getElementById('heroXpBar').style.width = `${xpPercent}%`;
 
+      // Stat cards DOM updates
       document.getElementById('statDone').textContent = done;
       document.getElementById('statTotal').textContent = total;
       document.getElementById('statXp').textContent = xp;
@@ -491,7 +710,9 @@
         if (isUnlocked) unlockedCount++;
 
         const div = document.createElement('div');
-        div.className = `glass-inner rounded-xl p-3 text-center space-y-2 ${isUnlocked ? 'border-purple-500/40 bg-purple-500/10' : 'opacity-40 grayscale'}`;
+        div.className = `glass-inner rounded-xl p-3 text-center space-y-2 border transition-all ${
+          isUnlocked ? 'border-purple-500/40 bg-purple-500/10 shadow-lg shadow-purple-500/10' : 'opacity-40 grayscale border-slate-800'
+        }`;
         div.innerHTML = `
           <div class="w-8 h-8 mx-auto rounded-lg bg-slate-900 flex items-center justify-center text-purple-400 text-xs">
             <i class="fa-solid ${b.icon}"></i>
@@ -505,6 +726,60 @@
       });
 
       document.getElementById('statBadges').textContent = unlockedCount;
+    }
+
+    // Modal and Custom Quest Logic
+    function openCustomQuestModal() {
+      document.getElementById('questModal').classList.remove('hidden');
+    }
+
+    function closeCustomQuestModal() {
+      document.getElementById('questModal').classList.add('hidden');
+    }
+
+    function saveCustomQuest() {
+      const titleInput = document.getElementById('questInputTitle');
+      const xpInput = document.getElementById('questInputXp');
+
+      const title = titleInput.value.trim();
+      const xp = parseInt(xpInput.value) || 50;
+
+      if (!title) return;
+
+      const newQuest = {
+        id: 'cq_' + Date.now(),
+        title: title,
+        xp: xp
+      };
+
+      customQuests.push(newQuest);
+      localStorage.setItem('cq_custom_quests', JSON.stringify(customQuests));
+
+      titleInput.value = '';
+      closeCustomQuestModal();
+      renderCustomQuests();
+      updateStats();
+    }
+
+    function removeCustomQuest(id) {
+      customQuests = customQuests.filter(q => q.id !== id);
+      delete completed[id];
+      localStorage.setItem('cq_custom_quests', JSON.stringify(customQuests));
+      localStorage.setItem('cq_completed', JSON.stringify(completed));
+      renderCustomQuests();
+      updateStats();
+    }
+
+    function resetProgress() {
+      if (confirm('Are you sure you want to reset all your roadmap quest progress?')) {
+        completed = {};
+        customQuests = [];
+        localStorage.removeItem('cq_completed');
+        localStorage.removeItem('cq_custom_quests');
+        renderSemesters();
+        renderCustomQuests();
+        updateStats();
+      }
     }
 
     window.addEventListener('DOMContentLoaded', init);
